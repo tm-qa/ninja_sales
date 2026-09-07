@@ -1,0 +1,27 @@
+2026-01-05 14:00:12,629  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Browser name: chrome
+2026-01-05 14:00:15,694  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> osName: Mac OS X
+2026-01-05 14:00:18,354  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Updated cookie PLATFORM = APP
+2026-01-05 14:00:19,163  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Login completed
+2026-01-05 14:00:24,195  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Updated cookie PLATFORM = WEB_APP
+2026-01-05 14:02:07,225  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Browser name: chrome
+2026-01-05 14:02:10,975  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> osName: Mac OS X
+2026-01-05 14:02:12,787  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Updated cookie PLATFORM = APP
+2026-01-05 14:02:13,479  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Login completed
+2026-01-05 14:02:18,503  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Updated cookie PLATFORM = WEB_APP
+2026-01-05 14:03:32,257  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Browser name: chrome
+2026-01-05 14:03:35,387  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> osName: Mac OS X
+2026-01-05 14:03:37,792  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Updated cookie PLATFORM = APP
+2026-01-05 14:03:38,647  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Login completed
+2026-01-05 14:03:43,686  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Updated cookie PLATFORM = WEB_APP
+2026-01-05 14:05:32,404  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Browser name: chrome
+2026-01-05 14:05:34,900  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> osName: Mac OS X
+2026-01-05 14:05:36,198  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Updated cookie PLATFORM = APP
+2026-01-05 14:05:36,872  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Login completed
+2026-01-05 14:05:41,904  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Updated cookie PLATFORM = WEB_APP
+2026-01-05 14:05:47,857  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Quote request clicked
+2026-01-05 14:05:48,528  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> All quote clicked
+2026-01-05 14:05:49,283  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Get quote clicked
+2026-01-05 14:05:49,783  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Dp name entered
+2026-01-05 14:05:49,886  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> Test user cliked
+2026-01-05 14:05:49,965  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> verticle cliked
+2026-01-05 14:05:50,586  INFO [main] LogUtils:26 -  AUTOMATION_LOG: ==> CV clicked
