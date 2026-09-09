@@ -24,7 +24,7 @@
     <base_url>https://app.sanity.stage.mintpro.in/</base_url>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <selenium.version>4.11.0</selenium.version>
+    <selenium.version>4.20.0</selenium.version>
     <!-- DRIVER_TYPE = platform type _ application type -->
     <DRIVER_TYPE>DESKTOP_CHROME</DRIVER_TYPE>
     <!--groupName>health_tm</groupName-->
@@ -49,6 +49,11 @@
       <artifactId>testng</artifactId>
       <version>6.14.3</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.slack.api</groupId>
+      <artifactId>slack-api-client</artifactId>
+      <version>1.39.3</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.assertthat/selenium-shutterbug -->
@@ -96,12 +101,23 @@
       <artifactId>allure-testng</artifactId>
       <version>2.17.3</version>
     </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-codec-http</artifactId>
+      <version>4.1.108.Final</version>
+    </dependency>
 
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.30</version>
+      <scope>provided</scope>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.11.0</version>
+      <version>4.20.0</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
@@ -139,11 +155,7 @@
           <scope>compile</scope>
       </dependency>
     <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <version>4.11.0</version>
-    </dependency>
+
 
 
   </dependencies>

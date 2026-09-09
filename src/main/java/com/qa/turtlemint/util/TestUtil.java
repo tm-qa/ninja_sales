@@ -1,18 +1,26 @@
 package com.qa.turtlemint.util;
 
+
 import com.assertthat.selenium_shutterbug.core.Capture;
 import com.assertthat.selenium_shutterbug.core.PageSnapshot;
 import com.assertthat.selenium_shutterbug.core.Shutterbug;
 import com.github.javafaker.Faker;
+import com.qa.turtlemint.base.TestBase;
 import com.qa.turtlemint.commands.WebCommands;
+
+import java.util.*;
+
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
+import org.testng.Assert;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -24,16 +32,25 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
 
 import static com.qa.turtlemint.base.TestBase.driver;
 import static com.qa.turtlemint.base.TestBase.prop;
 
-public class TestUtil {
+public class TestUtil extends TestBase {
+    @FindBy(xpath = "//select[@class=\"dateWrapperSelect\"][2]")
+    WebElement monthselect;
+    @FindBy(xpath = "//select[@class=\"dateWrapperSelect\"]")
+    WebElement yearselect;
 
-    public static long Page_load_time = 60;
+    @FindBy(xpath = "//input[@placeholder='dd/mm/yyyy']")
+    WebElement DOB;
+
+
+    public TestUtil() {
+        PageFactory.initElements(driver, this);
+    }
+
+    public static long Page_load_time = 10;
     public static long implicit_wait = 12;
 
     public String firstname;
@@ -80,6 +97,13 @@ public class TestUtil {
         LogUtils.info(msg);
     }
 
+    public static void click1(WebElement element, String msg) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(3));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+        LogUtils.info(msg);
+    }
+
     public static void sendKeys(WebElement element, String keys, String msg) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -94,6 +118,7 @@ public class TestUtil {
         LogUtils.info(msg);
 
     }
+
 
     public static void IsDisplayed(WebElement element, String msg) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -134,12 +159,35 @@ public class TestUtil {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static void fluentWait(By element, String msg) {
-        Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(10))
-                .pollingEvery(Duration.ofSeconds(10)).ignoring(Exception.class);
-        wait.until(driver -> {
-            System.out.println(msg);
-            return driver.findElement(element);
+
+//    public static void fluentWait(By element, String msg) {
+//        Wait<WebDriver> wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(10))
+//                .pollingEvery(Duration.ofSeconds(10)).ignoring(Exception.class);
+//        wait.until(driver -> {
+//            System.out.println(msg);
+//            return driver.findElement(element);
+//        });
+//    }
+
+    public static void FrameSwitch(By element,String msg){
+        WebDriverWait  wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+        LogUtils.info(msg);
+
+    }
+
+    public static WebElement fluentWait(By locator, String msg) {
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(90))
+                .pollingEvery(Duration.ofSeconds(8))
+                .ignoring(NoSuchElementException.class)
+                .ignoring(StaleElementReferenceException.class)
+                .ignoring(ElementNotInteractableException.class)
+                .ignoring(ElementClickInterceptedException.class);
+
+        return wait.until(d -> {
+            LogUtils.info("Polling for: "+ msg);
+            return d.findElement(locator);
         });
     }
 
@@ -154,6 +202,12 @@ public class TestUtil {
             }
         }
     }
+
+    public static void scrollTo(WebElement element) {
+        ((JavascriptExecutor) driver)
+                .executeScript("arguments[0].scrollIntoView({block:'center'});", element);
+    }
+
 
     public static void selectValueFromDropDown(@NotNull List<WebElement> elementList, String value) {
         elementList.stream().filter(obj -> obj.getText().equals(value)).findAny().ifPresent(element -> {
@@ -194,8 +248,8 @@ public class TestUtil {
 
     @Attachment(value = "Page Screenshot", type = "image/png")
     public static void getFullPageScreenShot() throws IOException {
-        byte[] t  = Shutterbug.shootPage(driver, Capture.FULL,true).getBytes();
-        Allure.addAttachment("FULL SCREENSHOT " + getTimeStamp() , new ByteArrayInputStream(t));
+        byte[] t = Shutterbug.shootPage(driver, Capture.FULL, true).getBytes();
+        Allure.addAttachment("FULL SCREENSHOT " + getTimeStamp(), new ByteArrayInputStream(t));
     }
 
     public static String PastDate(int days) {
@@ -210,6 +264,7 @@ public class TestUtil {
         return dateTimeFormatter.format(currentDateTime);
 
     }
+
     public static String payemntcompletedate(int days) {
         LocalDateTime currentDateTime = LocalDateTime.now().plusDays(days);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -239,7 +294,8 @@ public class TestUtil {
         plno = sb.toString();
         return plno;
     }
-    public static String generateRandommobileNo(int len) {
+
+    public static String  generateRandommobileNo(int len) {
         String chars = "0123456789";
         Random rnd = new Random();
         StringBuilder sb = new StringBuilder(len);
@@ -271,12 +327,12 @@ public class TestUtil {
 
     public static void uploadFile(String YourFileLocationFolder) {
         WebCommands.staticSleep(2000);
-   //     driver.findElement(By.xpath("//input[@type='file']")).sendKeys("/Users/" + YourFileLocationFolder + "/Downloads/dog.png");
+        //     driver.findElement(By.xpath("//input[@type='file']")).sendKeys("/Users/" + YourFileLocationFolder + "/Downloads/dog.png");
         driver.findElement(By.xpath("//input[@type='file']")).sendKeys("/home/" + YourFileLocationFolder + "/storage/dog.png");
         WebCommands.staticSleep(1000);
     }
 
-    public static String getRandomPhoneNumber(){
+    public static String getRandomPhoneNumber() {
         Random rand = new Random();
         int num1 = (rand.nextInt(7) + 1) * 100 + (rand.nextInt(8) * 10) + rand.nextInt(8);
         int num2 = rand.nextInt(743);
@@ -292,7 +348,7 @@ public class TestUtil {
 
     public static void LoginLess() {
 
-       // driver.get(prop.getProperty("url"));
+        // driver.get(prop.getProperty("url"));
         driver.get(System.getProperty("url"));
 
         String strUrl = driver.getCurrentUrl();
@@ -309,13 +365,98 @@ public class TestUtil {
         driver.switchTo().window(Current);
     }
 
+    public List<String> Addons_Count_Standalone_Comp() { /// TS_02 test case
+        return Arrays.asList(
+                "Zero Depreciation",
+                "PA Owner Driver",
+                "Secure Towing",
+                "IMT 23",
+                "IMT 34",
+                "Legal Liability Paid Driver",
+                "Legal Liability Cleaner",
+                "Legal Liability Conductor",
+                "Legal Liability Coolies",
+                "Geographic Extension",
+                "Legal liability for Non-Fare Paying Passengers"
+        );
+    }
+
+    public List<String> Addons_Count_GCV_Automatic() { /// TS_01 test case
+        return Arrays.asList(
+                "Zero Depreciation",
+                "PA Owner Driver",
+                "Secure Towing",
+                "IMT 23",
+                "IMT 34",
+                "Legal Liability Paid Driver",
+                "Legal Liability Cleaner",
+                "Legal Liability Conductor",
+                "Legal Liability Coolies",
+                "Geographic Extension",
+                "Legal liability for Non-Fare Paying Passengers"
+        );
+    }
+
+    public List<String> Addons_Count_GCV_Standalone_TP() {/// TS_03 test case
+        return Arrays.asList(
+                "PA Owner Driver",
+                "IMT 34",
+                "Legal Liability Paid Driver",
+                "Legal Liability Cleaner",
+                "Legal Liability Conductor",
+                "Legal Liability Coolies",
+                "Geographic Extension",
+                "Legal liability for Non-Fare Paying Passengers"
+        );
+    }
+
+    public List<String> Addons_Count_PCV_Automatic() {/// test case 4th
+        return Arrays.asList(
+                "Zero Depreciation",
+                "PA Owner Driver",
+                "IMT 34",
+                "Secure Towing",
+                "Legal Liability Paid Driver",
+                "Legal Liability Cleaner",
+                "Legal Liability Conductor",
+                "Legal Liability Coolies",
+                "Geographic Extension",
+                "Legal liability for Non-Fare Paying Passengers"
+        );
+    }
+
+    public  List<String> getExpectedAddons() {
+        if (TestBase.MethodName.equals("Roll_GCVStandalone")) {
+            System.out.println("Roll standalone list return");
+            return Addons_Count_Standalone_Comp();
+        }
+        if (TestBase.MethodName.equals("QIS_GCV_Automatic")) {
+            System.out.println("QIS gcv list return");
+            return Addons_Count_GCV_Automatic();
+        }
+        if (TestBase.MethodName.equals("QIS_PCV_Automatic")) {
+            System.out.println("QIS pcv list return");
+            return Addons_Count_PCV_Automatic();
+        }
+        if (TestBase.MethodName.equals("GCV_Stand_TP")) {
+            System.out.println("QIS pcv list return");
+            return Addons_Count_GCV_Standalone_TP();
+        }
+        Assert.fail(
+                "No expected addon list mapped for test method: " + TestBase.MethodName
+        );
+        return Collections.emptyList();
+    }
+
     public static void JsClick(WebElement element, String msg) throws InterruptedException {
-        Thread.sleep(3000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", element);
         LogUtils.info(msg);
 
     }
+
     public static void ElementPresent(By element, String keys, String msg) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         WebElement el = wait.until(ExpectedConditions.presenceOfElementLocated(element));
@@ -323,13 +464,6 @@ public class TestUtil {
         LogUtils.info(msg);
     }
 
-    @FindBy(xpath = "//select[@class=\"dateWrapperSelect\"][2]")
-    WebElement monthselect;
-    @FindBy(xpath = "//select[@class=\"dateWrapperSelect\"]")
-    WebElement yearselect;
-
-    @FindBy(xpath = "//input[@placeholder=\"dd/mm/yyyy\"]")
-    WebElement DOB;
     public void DatePicker(String year, String month, String date) throws InterruptedException {
         TestUtil.click(DOB, "Dob clicked");
         Select yearSelect = new Select(yearselect);
@@ -347,7 +481,6 @@ public class TestUtil {
         }
 
     }
-
 
 }
 
