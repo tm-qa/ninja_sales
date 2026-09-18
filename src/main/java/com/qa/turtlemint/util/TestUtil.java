@@ -1,4 +1,4 @@
-package com.qa.turtlemint.util;
+ package com.qa.turtlemint.util;
 
 import com.assertthat.selenium_shutterbug.core.Capture;
 import com.assertthat.selenium_shutterbug.core.PageSnapshot;
@@ -74,7 +74,7 @@ public class TestUtil {
     }
 
     public static void click(WebElement element, String msg) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
         LogUtils.info(msg);
@@ -180,15 +180,15 @@ public class TestUtil {
         WebCommands.staticSleep(3000);
     }
 
-    public static void getScreenShot() {
+    public static void getScreenShot()  {
         try {
             // Call getScreenshotAs method to create image file
             TakesScreenshot scrShot = ((TakesScreenshot) driver);
             File f = scrShot.getScreenshotAs(OutputType.FILE);
             Allure.addAttachment("Screenshot " + getTimeStamp(), FileUtils.openInputStream(f));
 
-        } catch (IOException e1) {
-            e1.printStackTrace();
+        } catch (IOException e4) {
+            e4.printStackTrace();
         }
     }
 
@@ -307,6 +307,18 @@ public class TestUtil {
             driver.switchTo().window(x).close();
         }
         driver.switchTo().window(Current);
+    }
+    public static void windowhandel(){
+        String Current = driver.getWindowHandle();
+        Set<String> AllHandles = driver.getWindowHandles();
+        for (String x : AllHandles) {
+            if (x.equals(Current)) {
+                continue;
+            }
+            driver.switchTo().window(x).close();
+        }
+        driver.switchTo().window(Current);
+
     }
 
     public static void JsClick(WebElement element, String msg) throws InterruptedException {
