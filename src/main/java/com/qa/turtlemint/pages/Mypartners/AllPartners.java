@@ -104,7 +104,6 @@ public class AllPartners  {
         TestUtil.click(ActionButton, "Action Button clicked");
         TestUtil.getFullPageScreenShot();
         TestUtil.click(callPartner, "Call Partner clicked");
-        TestUtil.getFullPageScreenShot();
         Assert.assertTrue(callPartner.isDisplayed());
         TestUtil.click(closeButton, "Closed button clicked");
         TestUtil.click(ActionButton, "Action Button clicked");

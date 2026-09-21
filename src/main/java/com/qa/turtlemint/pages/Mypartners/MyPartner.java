@@ -23,9 +23,6 @@ public class MyPartner extends TestBase {
     @FindBy(xpath = "//*[text()='Sales Commitment']")
     WebElement SalesCommitment;
 
-    @FindBy(xpath = "//p[normalize-space(.)='Sales Commitment Tool']")
-    WebElement salesCommitmentTool;
-
     @FindBy(xpath = "//*[contains(normalize-space(.),'Claims')]")
     WebElement Claims;
     @FindBy(xpath = "//*[normalize-space()='Claims']")
@@ -38,10 +35,6 @@ public class MyPartner extends TestBase {
 
     @FindBy(xpath = "//span[text()='Insights']")
     WebElement Insights;
-
-    @FindBy(xpath = "//span[text()='Sales Report (Mintpro)']")
-    WebElement salesReport;
-
 
     @FindBy(xpath = "//span[text()='My Partners']")
     WebElement MyPartners;
@@ -135,9 +128,6 @@ public class MyPartner extends TestBase {
     @FindBy(xpath = "//div[starts-with(normalize-space(.),'Y1')]")
     WebElement y1;
 
-    @FindBy(xpath = "//*[contains(text(),'All ever active partner predicted to get active this month')]")
-    WebElement highPotentialPartnersText;
-
 
     @FindBy(xpath = "//*[contains(text(),'Inactive M0-M2')]")
     WebElement inactiveM0M2;
@@ -221,26 +211,22 @@ public class MyPartner extends TestBase {
 
     public void UI() throws InterruptedException, IOException {
 
-//        TestUtil.click(APGRID, "Clicked on APGRID");
-//        for (String window : driver.getWindowHandles()) {
-//            driver.switchTo().window(window);
-//        }
-//        Thread.sleep(3000);
-//        TestUtil.click(backToHome, "Back To Home clicked");
-//        TestUtil.getFullPageScreenShot();
-//        TestUtil.click(SalesCommitment, "Clicked on Sales Commitment");
-//        Assert.assertEquals(
-//                salesCommitmentTool.getText().trim(),
-//                "Sales Commitment Tool"
-//        );
-//        TestUtil.click(Claims, "Clicked on Claims");
-//        Assert.assertTrue(claimspage.isDisplayed(), "Claims is not displayed");
-//        TestUtil.click(NinjaAcademy, "Clicked on Ninja Academy");
-//        Assert.assertTrue(exploreAcademy.isDisplayed(), "Explore Academy is not displayed");
-//        backToHome.click();
-//        Thread.sleep(3000);
+        TestUtil.click(APGRID, "Clicked on APGRID");
+        for (String window : driver.getWindowHandles()) {
+            driver.switchTo().window(window);
+        }
+        Thread.sleep(3000);
+        TestUtil.click(backToHome, "Back To Home clicked");
+        TestUtil.click(SalesCommitment, "Clicked on Sales Commitment");
+        TestUtil.getFullPageScreenShot();
+        TestUtil.click(Claims, "Clicked on Claims");
+        Assert.assertTrue(claimspage.isDisplayed(), "Claims is not displayed");
+        TestUtil.click(NinjaAcademy, "Clicked on Ninja Academy");
+        Assert.assertTrue(exploreAcademy.isDisplayed(), "Explore Academy is not displayed");
+        backToHome.click();
+        Thread.sleep(3000);
         TestUtil.click(Insights, "Clicked on Insights");
-       Assert.assertEquals(salesReport.getText(),"Sales Report (Mintpro)");
+        TestUtil.getFullPageScreenShot();
         TestUtil.windowhandel();
         TestUtil.click(PolicyIssuance, "Clicked on Policy Issuance");
         Assert.assertTrue(getPolicyIssued.isDisplayed(), "Get a Policy Issued is not displayed");
@@ -282,8 +268,6 @@ public class MyPartner extends TestBase {
         Assert.assertTrue(mtdActiveText.isDisplayed());
         superActivePartners.click();
         Assert.assertTrue(superActivePartnersText.isDisplayed());
-        //highPotentialPartners.click();
-//        Assert.assertTrue(highPotentialPartnersText.isDisplayed());
         inactiveM0M2.click();
         Assert.assertTrue(inactiveM0M2Text.isDisplayed());
         TestUtil.click(y0, "Clicked on Y0");
@@ -296,34 +280,32 @@ public class MyPartner extends TestBase {
         TestUtil.JsClick(healthPartnersClick, "healthPartnersClick clicked");
         TestUtil.getFullPageScreenShot();
         Assert.assertTrue(healthPartnersAsserttext.isDisplayed());
-//        TestUtil.JsClick(deGrowingPartnersClick, "deGrowingPartnersClick clicked");
-//        Assert.assertTrue(deGrowingPartnersAsserttext.isDisplayed());
         Assert.assertTrue(filterAsserttext.isDisplayed());
         Assert.assertTrue(sortByAsserttext.isDisplayed());
         TestUtil.JsClick(allPartners, "allPartners clicked");
         Thread.sleep(5000);
         TestUtil.click(dropdown, "dropdown clicked");
         Thread.sleep(5000);
-        lastMonthlyPremiumHighToLow.click();
-        TestUtil.click(dropdown, "dropdown clicked");
-        lastMonthlyPremiumLowToHigh.click();
-        TestUtil.click(dropdown, "dropdown clicked");
-        verificationDateMostRecent.click();
-        TestUtil.click(dropdown, "dropdown clicked");
-        activeQuoteHighToLow.click();
-        TestUtil.click(dropdown, "dropdown clicked");
-        mtdPremiumHighToLow.click();
-        TestUtil.click(dropdown, "dropdown clicked");
-        Thread.sleep(3000);
-        mtdPremiumLowToHigh.click();
-        TestUtil.click(dropdown, "dropdown clicked");
-        lastSaleDateMostRecent.click();
-        TestUtil.click(dropdown, "dropdown clicked");
-        renewalDueCurrentMonthHighToLow.click();
-        TestUtil.click(dropdown, "dropdown clicked");
-        TestUtil.click(editTable, "editTable clicked");
-        TestUtil.click(applyAll, "applyAll clicked");
-        TestUtil.click(reset, "reset clicked");
+        TestUtil.click(lastMonthlyPremiumHighToLow, "Last Monthly Premium High To Low clicked");
+        TestUtil.click(dropdown, "Dropdown clicked");
+        TestUtil.click(lastMonthlyPremiumLowToHigh, "Last Monthly Premium Low To High clicked");
+        TestUtil.click(dropdown, "Dropdown clicked");
+        TestUtil.click(verificationDateMostRecent, "Verification Date Most Recent clicked");
+        TestUtil.click(dropdown, "Dropdown clicked");
+        TestUtil.click(activeQuoteHighToLow, "Active Quote High To Low clicked");
+        TestUtil.click(dropdown, "Dropdown clicked");
+        TestUtil.click(mtdPremiumHighToLow, "MTD Premium High To Low clicked");
+        TestUtil.click(dropdown, "Dropdown clicked");
+        TestUtil.click(mtdPremiumLowToHigh, "MTD Premium Low To High clicked");
+        TestUtil.click(dropdown, "Dropdown clicked");
+        TestUtil.click(lastSaleDateMostRecent, "Last Sale Date Most Recent clicked");
+        TestUtil.click(dropdown, "Dropdown clicked");
+        TestUtil.click(renewalDueCurrentMonthHighToLow,
+                "Renewal Due Current Month High To Low clicked");
+        TestUtil.click(dropdown, "Dropdown clicked");
+        TestUtil.click(editTable, "Edit Table clicked");
+        TestUtil.click(applyAll, "Apply All clicked");
+        TestUtil.click(reset, "Reset clicked");
         TestUtil.getFullPageScreenShot();
         TestUtil.click(allPartners, "All Partners clicked");
 

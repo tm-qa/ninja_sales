@@ -56,7 +56,8 @@ public class FollowUps {
 
     @FindBy(xpath = "//div[contains(@class,'followUpCardWrapper')][.//*[normalize-space()='Prod TestingTest']]//button[normalize-space()='Mark As Complete']")
     WebElement markAsComplete;
-
+    @FindBy(xpath = "//div[contains(@class,'followUpCardWrapper')][.//*[normalize-space()='Prod']]//button[normalize-space()='Mark As Complete']")
+    WebElement markAsComplete1;
 
     @FindBy(xpath = "//div[@id='rc-tabs-0-tab-crm_insights']")
     WebElement crmInsights;
@@ -224,6 +225,7 @@ public class FollowUps {
         TestUtil.click(hotLead, "Hot Lead clicked");
         Thread.sleep(3000);
         TestUtil.click(reason, "Reason clicked");
+        Thread.sleep(3000);
         TestUtil.click(promiseToGetActive, "Promise To Get Active clicked");
         TestUtil.click(save, "Save clicked");
         Assert.assertTrue(dispositionSetForsnehashinde.isDisplayed());
@@ -254,6 +256,8 @@ public class FollowUps {
         act.moveToElement(save).click().build().perform();
         TestUtil.click(save, "Save clicked");
         Thread.sleep(5000);
+        TestUtil.click(followUpslead, "followUpslead clicked");
+        TestUtil.click(markAsComplete1, "Mark As Complete clicked");
         TestUtil.click(ellipsis, "Ellipsis clicked");
         TestUtil.click(addNote, "Add Note clicked");
         TestUtil.click(addNoteNote, "Add Note field clicked");
@@ -262,6 +266,8 @@ public class FollowUps {
         TestUtil.click(save, "Save clicked");
         TestUtil.click(notes, "Notes clicked");
         TestUtil.click(editNote, "Edit Note clicked");
+        addNoteNote.sendKeys(Keys.COMMAND,"a");
+        addNoteNote.sendKeys(Keys.BACK_SPACE);
         TestUtil.sendKeys(addNoteNote, "Testing123", "Test entered in Add Note");
         TestUtil.click(save, "Save clicked");
         TestUtil.click(arrowLeft, "Arrow Left clicked");
