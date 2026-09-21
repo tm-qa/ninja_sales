@@ -60,7 +60,6 @@ public class MyPartner extends TestBase {
         driver.get(url);
     }
 
-
     @Test(priority = 1, description = "My Partners Journey")
     public void UI() throws InterruptedException, AWTException, IOException {
         commonUI.UI();
