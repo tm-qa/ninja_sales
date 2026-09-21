@@ -3,8 +3,6 @@ package Mypartners;
 import com.qa.turtlemint.base.TestBase;
 import com.qa.turtlemint.pages.Mypartners.*;
 import com.qa.turtlemint.pages.NINJA.Ninja_Login;
-import com.qa.turtlemint.pages.grow.CVQuote;
-import com.qa.turtlemint.pages.grow.CVUpload;
 import com.qa.turtlemint.pages.grow.Calculator;
 import com.qa.turtlemint.util.TestUtil;
 import org.testng.annotations.AfterClass;
@@ -21,9 +19,7 @@ public class MyPartner extends TestBase {
     }
 
     Calculator calculator;
-    CVQuote cv;
     TestUtil util;
-    CVUpload upload;
     Ninja_Login login;
     com.qa.turtlemint.pages.Mypartners.MyPartner commonUI;
     AllPartners allPartners;
@@ -40,9 +36,7 @@ public class MyPartner extends TestBase {
     public void start() throws Exception {
         initialization();
         calculator = new Calculator();
-        cv = new CVQuote();
         util = new TestUtil();
-        upload = new CVUpload();
         login = new Ninja_Login();
         commonUI = new com.qa.turtlemint.pages.Mypartners.MyPartner();
         allPartners = new AllPartners();
@@ -84,7 +78,6 @@ public class MyPartner extends TestBase {
     public void Filters() throws InterruptedException, AWTException, IOException {
         filter.filters();
     }
-
     @AfterClass
     public void close() {
         driver.quit();
