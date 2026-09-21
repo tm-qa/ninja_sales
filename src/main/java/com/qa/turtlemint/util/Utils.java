@@ -1,5 +1,6 @@
 package com.qa.turtlemint.util;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -55,5 +56,9 @@ public class Utils {
         return null;
 
 
+    }
+    public static String getTimeStamp() {
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Timestamp(System.currentTimeMillis()));
+        return timeStamp;
     }
 }
