@@ -128,6 +128,11 @@ public class MyPartner extends TestBase {
     @FindBy(xpath = "//div[starts-with(normalize-space(.),'Y1')]")
     WebElement y1;
 
+    @FindBy(xpath = "//*[contains(text(),'Partners activated for the first time in previous financial year')]")
+    WebElement y1Text;
+
+    @FindBy(xpath = "//*[contains(text(),'Partners activated for the first time in current financial year')]")
+    WebElement y0Text;
 
     @FindBy(xpath = "//*[contains(text(),'Inactive M0-M2')]")
     WebElement inactiveM0M2;
@@ -175,7 +180,7 @@ public class MyPartner extends TestBase {
     @FindBy(xpath = "//div[@title='Last Monthly Premium (High to Low)']")
     WebElement lastMonthlyPremiumHighToLow;
 
-    @FindBy(xpath = "//div[@title='Last Monthly Premium (Low to High)']")
+    @FindBy(xpath = "//div[@title='Last Health Mon. Prem (Low to High)']")
     WebElement lastMonthlyPremiumLowToHigh;
 
     @FindBy(xpath = "//div[@title='Verification Date (Most Recent)']")
@@ -252,29 +257,32 @@ public class MyPartner extends TestBase {
         TestUtil.click(SearchPartner, "Clicked on Search Partner field");
         TestUtil.sendKeys(SearchPartner, "Sneha Shinde", "Entered partner name");
         TestUtil.click(BackToPartnerList, "Clicked on Back to Partner List");
+        Thread.sleep(3000);
         Assert.assertTrue(bellIcon.isDisplayed(), "Bell icon is not displayed");
         Assert.assertTrue(ReportASale.isDisplayed(), "Report a Sale is not displayed");
         Assert.assertTrue(FollowUps.isDisplayed(), "FollowUps is not displayed");
         allPartners.click();
         TestUtil.getFullPageScreenShot();
         Assert.assertTrue(allowedToTransact.isDisplayed());
-        lastMonthActive.click();
-        Assert.assertTrue(inactiveThisMonth.isDisplayed());
-        everActive.click();
-        Assert.assertTrue(everActiveText.isDisplayed());
-        neverActive.click();
-        Assert.assertTrue(neverActiveText.isDisplayed());
-        mtdActive.click();
+        TestUtil.click(mtdActive, "MTD Active clicked");
         Assert.assertTrue(mtdActiveText.isDisplayed());
-        superActivePartners.click();
+        TestUtil.click(everActive, "Ever Active clicked");
+        Assert.assertTrue(everActiveText.isDisplayed());
+        TestUtil.click(neverActive, "Never Active clicked");
+        Assert.assertTrue(neverActiveText.isDisplayed());
+        TestUtil.click(y1, "Clicked on Y1");
+        Assert.assertTrue(y1Text.isDisplayed());
+        TestUtil.click(superActivePartners, "Super Active Partners clicked");
         Assert.assertTrue(superActivePartnersText.isDisplayed());
-        inactiveM0M2.click();
+        TestUtil.click(lastMonthActive, "Last Month Active clicked");
+        Assert.assertTrue(inactiveThisMonth.isDisplayed());
+        TestUtil.click(inactiveM0M2, "Inactive M0M2 clicked");
         Assert.assertTrue(inactiveM0M2Text.isDisplayed());
         TestUtil.click(y0, "Clicked on Y0");
-        TestUtil.click(y1, "Clicked on Y1");
-        lifePartners.click();
+        Assert.assertTrue(y0Text.isDisplayed());
+        TestUtil.click(lifePartners, "Life Partners clicked");
         Assert.assertTrue(lifePartnersText.isDisplayed());
-        cvPartnersClick.click();
+        TestUtil.click(cvPartnersClick, "CV Partners clicked");
         TestUtil.getFullPageScreenShot();
         Assert.assertTrue(cvPartnersAsserttext.isDisplayed());
         TestUtil.JsClick(healthPartnersClick, "healthPartnersClick clicked");
@@ -282,8 +290,6 @@ public class MyPartner extends TestBase {
         Assert.assertTrue(healthPartnersAsserttext.isDisplayed());
         Assert.assertTrue(filterAsserttext.isDisplayed());
         Assert.assertTrue(sortByAsserttext.isDisplayed());
-        TestUtil.JsClick(allPartners, "allPartners clicked");
-        Thread.sleep(5000);
         TestUtil.click(dropdown, "dropdown clicked");
         Thread.sleep(5000);
         TestUtil.click(lastMonthlyPremiumHighToLow, "Last Monthly Premium High To Low clicked");
@@ -307,7 +313,7 @@ public class MyPartner extends TestBase {
         TestUtil.click(applyAll, "Apply All clicked");
         TestUtil.click(reset, "Reset clicked");
         TestUtil.getFullPageScreenShot();
-        TestUtil.click(allPartners, "All Partners clicked");
+
 
     }
 }
