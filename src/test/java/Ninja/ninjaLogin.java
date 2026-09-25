@@ -1,9 +1,12 @@
-package NinjaLogin;
+package Ninja;
 
 
 import com.qa.turtlemint.pages.NINJA.Ninja_Login;
 import com.qa.turtlemint.base.TestBase;
 
+import com.qa.turtlemint.pages.NINJA.mis;
+import com.qa.turtlemint.pages.NINJA.policy_issuance;
+import com.qa.turtlemint.pages.NINJA.quote_request;
 import com.qa.turtlemint.pages.grow.*;
 import com.qa.turtlemint.util.TestUtil;
 import org.openqa.selenium.By;
@@ -27,6 +30,10 @@ public class ninjaLogin extends TestBase {
     Ninja_Login login;
     MISCD_QIS_Automatic miscd;
     CV_Standalone_TP tp;
+    policy_issuance PI;
+    CV_QuoteViaMintpro MQ;
+    quote_request QR;
+    mis MI;
 
     String url;
 
@@ -42,10 +49,14 @@ public class ninjaLogin extends TestBase {
         login = new Ninja_Login();
         miscd = new MISCD_QIS_Automatic();
         tp = new CV_Standalone_TP();
-        driver.get(System.getProperty("ninjaurl"));
-//        driver.get(prop.getProperty("URL"));
+        PI = new policy_issuance();
+        MQ = new CV_QuoteViaMintpro();
+        QR = new quote_request();
+        MI = new mis();
+//        driver.get(System.getProperty("ninjaurl"));
+        driver.get(prop.getProperty("URL"));
         Thread.sleep(2000);
-        login.NinjaLogin();
+        login.NinjaLogin("6999123456");
         url = driver.getCurrentUrl();
     }
 
@@ -94,9 +105,30 @@ public class ninjaLogin extends TestBase {
         tp.TP_standalone();
         cv.ValidateAddons();
     }
+    @Test(priority = 5, description = "Cv_Quote_Via_MintPro")
+    public void CV_QuoteViaMintproVerify() throws Exception {
+        PI.quoteRequest();
+        String requestId = MQ.CV_QuoteViaMintpro();
+        System.out.println("Request ID captured: " + requestId);
+        PI.OpsLogin();
+        login.NinjaLogin("6999912345");
+        PI.quoteRequest();
+        QR.SearchRequestAndClose(requestId);
+        PI.OpsLogin();
+        login.NinjaLogin("6999123456");
+        PI.quoteRequest();
+        QR.SearchRequestAndBuy(requestId);
+        PI.OpsLogin();
+        login.NinjaLogin("6999912345");
+        PI.policyIssuance();
+        String MISid = QR.SearchRequestAndIssue(requestId);
+        System.out.println(MISid);
+        PI.MIS();
+        MI.SearchRequestAndCancel(MISid);
+    }
     @AfterMethod
     public void close() {
-        driver.quit();
+//        driver.quit();
     }
 
 //    @AfterClass

@@ -481,6 +481,13 @@ public class TestUtil extends TestBase {
         }
 
     }
+//    public static void LoginLessNinja() {
+//
+//        driver.get("https://ninja.sanity.turtle-feature.com/");
+//        WebCommands.staticSleep(3000);
+//        driver.findElement(By.xpath("//span[contains(text(),'Renewals')]")).click();
+//
+//    }
 
 }
 
