@@ -228,6 +228,8 @@ public class GCV_QIS_Automatic extends TestBase {
     @FindBy(xpath = "//input[@id=\"opsDetail.comments\"]")
     WebElement commentsBox;
 
+    Ninja_Login login;
+
 
     public void upload_GCV() throws InterruptedException, IOException {
         LogUtils.info("########## CV Upload flow started ##########");
@@ -502,9 +504,7 @@ public class GCV_QIS_Automatic extends TestBase {
         TestUtil.JsClick(logout, "Logout clicked");
         Thread.sleep(10000);
         LogUtils.info("########## Ninja Ops Login started ##########");
-
-        Ninja_Login logi = new Ninja_Login();
-        logi.NinjaLoginOps();
+        login.NinjaLogin("6999912345");
         LogUtils.info("########## Ninja Ops Login completed ##########");
     }
 
