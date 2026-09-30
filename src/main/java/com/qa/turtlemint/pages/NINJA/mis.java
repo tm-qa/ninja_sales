@@ -15,7 +15,7 @@ public class mis extends TestBase {
     WebElement searchField;
     @FindBy(xpath = "//*[text()='Action Reqd']")
     WebElement selectLead;
-    @FindBy(xpath = "//span[@class='anticon']//img[@alt='Edit']")
+    @FindBy(xpath = "//span[@class='anticon']")
     WebElement editAction;
     @FindBy(xpath = "//label[text()='Policy Status']/../following-sibling::div")
     WebElement policyStatusDD;
@@ -61,5 +61,6 @@ public class mis extends TestBase {
         WebCommands.staticSleep(10000);
         Assert.assertTrue(viewMode.isDisplayed(), "View mode is not displayed after saving issuance");
         Assert.assertTrue(junkText.isDisplayed(), "Junk text not showing");
+        System.out.println("++++++++++ POLICY MARKED AS JUNK +++++++++");
     }
 }

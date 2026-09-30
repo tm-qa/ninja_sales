@@ -123,7 +123,6 @@ public class ninjaLogin extends TestBase {
         PI.policyIssuance();
         String MISid = QR.SearchRequestAndIssue(requestId);
         System.out.println(MISid);
-        PI.MIS();
         MI.SearchRequestAndCancel(MISid);
     }
     @AfterMethod

@@ -44,9 +44,13 @@ public class quote_request extends TestBase {
     WebElement backArrow;
     @FindBy(xpath = "//span[text()='Junk']")
     WebElement junkText;
+    @FindBy(xpath = "//span[@aria-label='menu']")
+    WebElement menuIcon;
+    @FindBy(xpath = "//*[text()='MIS']")
+    WebElement MIS;
     @FindBy(xpath = "//label[text()='Issuance Status']/../following-sibling::div")
     WebElement issuanceStatusDD;
-    @FindBy(xpath = "//div[text()='Issued']")
+    @FindBy(xpath = "//div[@title='Issued']//div")
     WebElement issuanceStatusIssued;
     @FindBy(xpath = "//label[text()='Issuance Sub Status']/../following-sibling::div")
     WebElement issuanceSubStatusDD;
@@ -60,21 +64,21 @@ public class quote_request extends TestBase {
     WebElement proposerLastName;
     @FindBy(xpath = "//label[text()='Proposer Phone']/../following-sibling::div//input")
     WebElement proposerPhone;
-    @FindBy(xpath = "//label[text()='Vehicle Subtype']/../following-sibling::div//input")
+    @FindBy(xpath = "//label[text()='Vehicle Subtype']/../following-sibling::div")
     WebElement vehicleSubtype;
-    @FindBy(xpath = "//div[@aria-selected='false']//div[text()='TAXI']")
+    @FindBy(xpath = "//div[@title='TAXI']//div")
     WebElement vehicleSubtypeTaxi;
     @FindBy(xpath = "//label[text()='Issuance Date']/../following-sibling::div//input")
     WebElement issuanceDate;
-    @FindBy(xpath = "//div[text()='22']")
+    @FindBy(xpath = "//td[contains(@class,'ant-picker-cell-today') and not(contains(@class,'ant-picker-cell-disabled'))]")
     WebElement issuanceDate22;
-    @FindBy(xpath = "//label[text()='Payment Status']/../following-sibling::div//input")
-    WebElement paymentStatus;
-    @FindBy(xpath = "//div[text()='Payment Complete']")
+    @FindBy(xpath = "//label[text()='Payment Status']/../following-sibling::div")
+    WebElement PaymentStatus;
+    @FindBy(xpath = "//div[@title='Payment Complete']")
     WebElement paymentStatusComplete;
     @FindBy(xpath = "//label[text()='Payment Complete Date']/../following-sibling::div//input")
     WebElement paymentCompleteDate;
-    @FindBy(xpath = "//div[text()='22']")
+    @FindBy(xpath = "//div[contains(@class,'ant-picker-dropdown') and not(contains(@class,'ant-picker-dropdown-hidden'))]//td[contains(@class,'ant-picker-cell-today')]")
     WebElement paymentComplete22;
     @FindBy(xpath = "//label[text()='Payment Verified']/../following-sibling::div//span")
     WebElement paymentVerifiedCheckbox;
@@ -93,11 +97,11 @@ public class quote_request extends TestBase {
     WebElement policyDetailsID;
     @FindBy(xpath = "//label[text()='Risk Start Date']/../following-sibling::div//input")
     WebElement riskStartDate;
-    @FindBy(xpath = "//div[text()='22']")
+    @FindBy(xpath = "//div[contains(@class,'ant-picker-dropdown') and not(contains(@class,'ant-picker-dropdown-hidden'))]//td[contains(@class,'ant-picker-cell-today')]")
     WebElement riskStartDate22;
     @FindBy(xpath = "//label[text()='Risk End Date']/../following-sibling::div//input")
     WebElement riskEndDate;
-    @FindBy(xpath = "//div[text()='22']")
+    @FindBy(xpath = "//div[contains(@class,'ant-picker-dropdown') and not(contains(@class,'ant-picker-dropdown-hidden'))]//td[contains(@class,'ant-picker-cell-today')]")
     WebElement riskEndDate22;
     @FindBy(xpath = "//label[text()='Transaction Number']/../following-sibling::div//input")
     WebElement transactionNumberField;
@@ -167,22 +171,37 @@ public class quote_request extends TestBase {
         TestUtil.sendKeys(proposerLastName,"Testing","Proposer last name entered");
         TestUtil.sendKeys(proposerPhone,"6888812345","Proposer phone entered");
         WebCommands.staticSleep(1000);
+        js.executeScript("window.scrollBy(0, 600);");
+//        js.executeScript("arguments[0].scrollIntoView(true);", vehicleSubtype);
+//        js.executeScript("arguments[0].click();", vehicleSubtype);
+//        WebCommands.staticSleep(500);
+//        js.executeScript("arguments[0].scrollIntoView(true);", vehicleSubtypeTaxi);
+//        js.executeScript("arguments[0].click();", vehicleSubtypeTaxi);
         TestUtil.click(vehicleSubtype,"clicked on vehicle sub type DD");
+        WebCommands.staticSleep(500);
         TestUtil.click(vehicleSubtypeTaxi,"clicked on vehicle sub type Taxi");
-        WebCommands.staticSleep(1000);
+        WebCommands.staticSleep(500);
+        js.executeScript("window.scrollBy(0, 2000);");
+//        js.executeScript("arguments[0].scrollIntoView(true);", issuanceStatusDD);
+//        js.executeScript("arguments[0].click();", issuanceStatusDD);
         TestUtil.click(issuanceStatusDD, "Clicked on issuance status dropdown");
         WebCommands.staticSleep(500);
         TestUtil.click(issuanceStatusIssued, "Selected Issued status");
         WebCommands.staticSleep(1000);
-        TestUtil.sendKeys(issuanceDate,"22-09-2026","Entered issuance Date");
+        TestUtil.click(issuanceDate, "Clicked on issuance Date");
+//        TestUtil.sendKeys(issuanceDate,"22-09-2026","Entered issuance Date");
         WebCommands.staticSleep(500);
         TestUtil.click(issuanceDate22, "Clicked on issuance date 22");
-        TestUtil.click(paymentStatus,"clicked on payment Status DD");
+        WebCommands.staticSleep(500);
+        TestUtil.click(PaymentStatus,"clicked on payment Status DD");
         WebCommands.staticSleep(500);
         TestUtil.click(paymentStatusComplete,"clicked on payment Status as complete");
-        TestUtil.sendKeys(paymentCompleteDate,"22-09-2026","Entered payment Complete Date");
+        WebCommands.staticSleep(500);
+        TestUtil.click(paymentCompleteDate,"clicked on payment Complete Date");
+//        TestUtil.sendKeys(paymentCompleteDate,"22-09-2026","Entered payment Complete Date");
         WebCommands.staticSleep(500);
         TestUtil.click(paymentComplete22, "Clicked on payment Complete date 22");
+        WebCommands.staticSleep(500);
         TestUtil.sendKeys(PolicyNumber, TestUtil.generateRandomPolicyNo(12), "Policy number entered");
         TestUtil.click(paymentVerifiedCheckbox,"Clicked on payment verified checkbox");
         WebCommands.staticSleep(1000);
@@ -195,22 +214,30 @@ public class quote_request extends TestBase {
         WebCommands.staticSleep(1000);
         TestUtil.sendKeys(transactionNumberField, "567895fgh", "Entered transaction Number");
         WebCommands.staticSleep(1000);
-
-        TestUtil.sendKeys(riskStartDate,"22-09-2026","Entered risk Start Date");
+        TestUtil.click(riskStartDate,"Clicked on risk Start Date");
+//        TestUtil.sendKeys(riskStartDate,"22-09-2026","Entered risk Start Date");
         WebCommands.staticSleep(500);
         TestUtil.click(riskStartDate22, "Clicked on risk Start Date 22");
-        TestUtil.sendKeys(riskEndDate,"22-09-2026","Entered risk End Date");
+//        TestUtil.sendKeys(riskEndDate,"22-09-2026","Entered risk End Date");
+        TestUtil.click(riskEndDate,"Clicked on risk End Date");
         WebCommands.staticSleep(500);
         TestUtil.click(riskEndDate22, "Clicked on risk End Date 22");
 
         WebCommands.staticSleep(2000);
         driver.switchTo().defaultContent();
         TestUtil.click(saveButton, "Clicked on Save Button");
-        WebCommands.staticSleep(5000);
+        WebCommands.staticSleep(20000);
+        js.executeScript("window.scrollTo(0, 0);");
+        js.executeScript("arguments[0].scrollIntoView(true);", policyDetailsID);
         Assert.assertTrue(viewMode.isDisplayed(), "View mode is not displayed after saving issuance");
         MISid = policyDetailsID.getAttribute("value");
         System.out.println("Policy Details ID: " + MISid);
         TestUtil.click(backArrow, "Clicked on back button");
+        WebCommands.staticSleep(2000);
+        TestUtil.click(menuIcon, "Clicked on menu icon");
+        WebCommands.staticSleep(1000);
+        TestUtil.click(MIS,"CLicked on MIS");
+        WebCommands.staticSleep(2000);
         return MISid;
 
     }

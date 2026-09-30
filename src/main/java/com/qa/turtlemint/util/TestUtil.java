@@ -294,6 +294,25 @@ public class TestUtil extends TestBase {
         plno = sb.toString();
         return plno;
     }
+    public static String generateRandomCommercialVehicleRegNo() {
+        Random rnd = new Random();
+
+        String stateCode = "MH";
+        String rtoCode = "01";
+//        String rtoCode = String.format("%02d", rnd.nextInt(15) + 1);
+
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder series = new StringBuilder(2);
+
+        for (int i = 0; i < 2; i++) {
+            series.append(chars.charAt(rnd.nextInt(chars.length())));
+        }
+
+        int number = 1000 + rnd.nextInt(9000);
+
+        return stateCode + rtoCode + series + number;
+    }
+
 
     public static String  generateRandommobileNo(int len) {
         String chars = "0123456789";
