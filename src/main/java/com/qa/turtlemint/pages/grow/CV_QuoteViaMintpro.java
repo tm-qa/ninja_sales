@@ -13,6 +13,8 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 import java.util.Set;
 
+import static com.qa.turtlemint.util.TestUtil.generateRandomCommercialVehicleRegNo;
+
 public class CV_QuoteViaMintpro extends TestBase {
     @FindBy(xpath = "//span[@aria-label='arrow-left']/../following-sibling::div//div//div")
     WebElement request_Id;
@@ -70,13 +72,13 @@ public class CV_QuoteViaMintpro extends TestBase {
     WebElement fuelTypeDiesel;
     @FindBy(xpath = "//span[text()='Model & Variant']/../following-sibling::div//input[@type= 'search']")
     WebElement model;
-    @FindBy(xpath = "//div[@aria-selected='false']//div[contains(text(),'DZIRE VDI PLUS')]")
+    @FindBy(xpath = "//div[@aria-selected='false']//div[contains(text(),'DZIRE')]")
     WebElement variant;
     @FindBy(xpath = "//div[@name='Kaali Peeli / Driver Driven']//div")
     WebElement bodyType;
     @FindBy(xpath = "//input[@placeholder='Reference Name']")
     WebElement leadName;
-    @FindBy(xpath = "//span[text()= 'Royal Sundaram']")
+    @FindBy(xpath = "//span[contains(@class,'ant-tag style-module__quoteTag')]")
     WebElement insurerSelect;
     @FindBy(xpath = "//iframe[@title='Quote Results']")
     WebElement getFrame;
@@ -119,7 +121,8 @@ public class CV_QuoteViaMintpro extends TestBase {
         js.executeScript("arguments[0].scrollIntoView(true)", categoryTaxi);
         js.executeScript("arguments[0].click();", categoryTaxi);
 //        TestUtil.click(categoryTaxi,"Selected category as Taxi");
-        TestUtil.sendKeys(regNoField,"MH01BF8490","Reg No Sent");
+        TestUtil.sendKeys(regNoField, generateRandomCommercialVehicleRegNo(),"Reg No Sent");
+        System.out.println("Registration Number: " + generateRandomCommercialVehicleRegNo());
         WebCommands.staticSleep(500);
         TestUtil.click(getQuoteCV,"Clicked on get quote cta");
         WebCommands.staticSleep(1000);
@@ -142,7 +145,7 @@ public class CV_QuoteViaMintpro extends TestBase {
         TestUtil.click(prevPolicyFromTMno,"Selected Previous Policy From Turtlemint ? as NO");
         WebCommands.staticSleep(1000);
         TestUtil.click(nextButton,"Clicked on Next Button");
-        WebCommands.staticSleep(2000);
+        WebCommands.staticSleep(4000);
         TestUtil.click(insurerBajaj,"Selected insurer as BAJAJ");
         WebCommands.staticSleep(1000);
         TestUtil.click(nextButton,"Clicked on Next Button");
@@ -174,7 +177,7 @@ public class CV_QuoteViaMintpro extends TestBase {
         String insurerSelectText = insurerSelect.getText();
         System.out.println("Looking for your favourite quote for " +insurerSelectText +" insurer");
         TestUtil.click(requestQuoteCTA,"clicked on request quote cta");
-        WebCommands.staticSleep(10000);
+        WebCommands.staticSleep(18000);
         driver.switchTo().defaultContent();
         String requestIDText = requestID.getText();
         System.out.println("request ID is : "+requestIDText);
