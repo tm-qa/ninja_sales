@@ -21,8 +21,8 @@
                 </groups>
         <classes>
 
-
-            <class name="NinjaLogin.ninjaLogin"></class>
+            <class name="Ninja.ninjaLogin"></class>
+            <class name="Mypartners.MyPartner"></class>
         </classes>
 
     </test>
