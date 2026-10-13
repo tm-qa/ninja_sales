@@ -1,6 +1,7 @@
 package com.qa.turtlemint.pages.Mypartners;
 import com.qa.turtlemint.base.TestBase;
 import com.qa.turtlemint.util.TestUtil;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
