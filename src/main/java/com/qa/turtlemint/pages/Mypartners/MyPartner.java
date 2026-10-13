@@ -30,8 +30,8 @@ public class MyPartner extends TestBase {
 
     @FindBy(xpath = "//*[text()='Ninja Academy']")
     WebElement NinjaAcademy;
-    @FindBy(xpath = "//h3[normalize-space(.)='Explore Academy']")
-    WebElement exploreAcademy;
+    @FindBy(xpath = "//img[contains(@src,'NinjaAcademy-Logo-V2.webp')]")
+    WebElement Ninjaacademylogo;
 
     @FindBy(xpath = "//span[text()='Insights']")
     WebElement Insights;
@@ -147,7 +147,7 @@ public class MyPartner extends TestBase {
     WebElement lifePartnersText;
 
 
-    @FindBy(xpath = "//*[contains(text(),'CV Partners')]")
+    @FindBy(xpath = "//div[starts-with(normalize-space(text()),'CV Partners')]")
     WebElement cvPartnersClick;
 
     @FindBy(xpath = "//*[contains(text(),'All partners active on CV product in Jan, Feb and March 2024')]")
@@ -227,7 +227,9 @@ public class MyPartner extends TestBase {
         TestUtil.click(Claims, "Clicked on Claims");
         Assert.assertTrue(claimspage.isDisplayed(), "Claims is not displayed");
         TestUtil.click(NinjaAcademy, "Clicked on Ninja Academy");
-        Assert.assertTrue(exploreAcademy.isDisplayed(), "Explore Academy is not displayed");
+        Thread.sleep(3000);
+        TestUtil.waitUntilVisibilityOfElement(Ninjaacademylogo);
+        Assert.assertTrue(Ninjaacademylogo.isDisplayed(), "Ninja academy logo displayed");
         backToHome.click();
         Thread.sleep(3000);
         TestUtil.click(Insights, "Clicked on Insights");
@@ -282,9 +284,11 @@ public class MyPartner extends TestBase {
         Assert.assertTrue(y0Text.isDisplayed());
         TestUtil.click(lifePartners, "Life Partners clicked");
         Assert.assertTrue(lifePartnersText.isDisplayed());
-        TestUtil.click(cvPartnersClick, "CV Partners clicked");
-        TestUtil.getFullPageScreenShot();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'center'});", cvPartnersClick);
+        TestUtil.JsClick(cvPartnersClick, "CV Partners clicked");
         Assert.assertTrue(cvPartnersAsserttext.isDisplayed());
+        TestUtil.getFullPageScreenShot();
         TestUtil.JsClick(healthPartnersClick, "healthPartnersClick clicked");
         TestUtil.getFullPageScreenShot();
         Assert.assertTrue(healthPartnersAsserttext.isDisplayed());
@@ -309,6 +313,7 @@ public class MyPartner extends TestBase {
         TestUtil.click(renewalDueCurrentMonthHighToLow,
                 "Renewal Due Current Month High To Low clicked");
         TestUtil.click(dropdown, "Dropdown clicked");
+        TestUtil.waitUntilVisibilityOfElement(editTable);
         TestUtil.click(editTable, "Edit Table clicked");
         TestUtil.click(applyAll, "Apply All clicked");
         TestUtil.click(reset, "Reset clicked");
