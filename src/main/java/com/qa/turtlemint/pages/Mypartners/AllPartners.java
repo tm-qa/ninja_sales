@@ -94,10 +94,6 @@ public class AllPartners  {
     WebElement allPartners;
 
 
-
-
-
-
     public void allpartners () throws InterruptedException, IOException {
         TestUtil.click(MyPartners, "My Partners clicked");
         TestUtil.click(allPartners, "All Partners clicked");

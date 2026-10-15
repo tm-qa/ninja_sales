@@ -123,7 +123,7 @@ public class MyPartner extends TestBase {
     WebElement superActivePartnersText;
 
 
-    @FindBy(xpath = "//div[starts-with(normalize-space(.),'Y0')]")
+    @FindBy(xpath = "//div[starts-with(normalize-space(text()),'Y0')]")
     WebElement y0;
 
     @FindBy(xpath = "//div[starts-with(normalize-space(.),'Y1')]")
@@ -141,6 +141,17 @@ public class MyPartner extends TestBase {
     @FindBy(xpath = "//*[contains(text(),'All New partners onboarded in last 3 months and are inactive')]")
     WebElement inactiveM0M2Text;
 
+    @FindBy(xpath = "(//div[starts-with(normalize-space(), 'Reactivation')])[1]")
+    WebElement reactivation;
+
+    @FindBy(xpath = "//p[normalize-space()='Partners active before last financial year, but not transacted in current financial year']")
+    WebElement partnersActiveBeforeLastFinancialYearText;
+
+    @FindBy(xpath = "(//div[starts-with(normalize-space(), 'LYA')])[2]")
+    WebElement lya;
+
+    @FindBy(xpath = "//p[normalize-space()='Partners active in last financial year, but not transacted in current financial year']")
+    WebElement partnersActiveInLastFinancialYearText;
     @FindBy(xpath = "//*[contains(text(),'Life Partners')]")
     WebElement lifePartners;
 
@@ -160,13 +171,6 @@ public class MyPartner extends TestBase {
 
     @FindBy(xpath = "//*[contains(text(),'All partners active on Health product since Jan 2023')]")
     WebElement healthPartnersAsserttext;
-
-
-    @FindBy(xpath = "//*[contains(text(),'De-growing Partners')]")
-    WebElement deGrowingPartnersClick;
-
-    @FindBy(xpath = "//*[contains(text(),'All partners that have been de-growing consistently')]")
-    WebElement deGrowingPartnersAsserttext;
 
     @FindBy(xpath = "//*[contains(text(),'Filter')]")
     WebElement filterAsserttext;
@@ -273,26 +277,35 @@ public class MyPartner extends TestBase {
         Assert.assertTrue(everActiveText.isDisplayed());
         TestUtil.click(neverActive, "Never Active clicked");
         Assert.assertTrue(neverActiveText.isDisplayed());
-        TestUtil.click(y1, "Clicked on Y1");
-        Assert.assertTrue(y1Text.isDisplayed());
+        TestUtil.click(inactiveM0M2, "Inactive M0M2 clicked");
+        Assert.assertTrue(inactiveM0M2Text.isDisplayed());
+        TestUtil.click(reactivation, "reactivation clicked");
+        Assert.assertTrue(partnersActiveBeforeLastFinancialYearText.isDisplayed());
         TestUtil.click(superActivePartners, "Super Active Partners clicked");
         Assert.assertTrue(superActivePartnersText.isDisplayed());
         TestUtil.click(lastMonthActive, "Last Month Active clicked");
         Assert.assertTrue(inactiveThisMonth.isDisplayed());
-        TestUtil.click(inactiveM0M2, "Inactive M0M2 clicked");
-        Assert.assertTrue(inactiveM0M2Text.isDisplayed());
-        TestUtil.click(y0, "Clicked on Y0");
-        Assert.assertTrue(y0Text.isDisplayed());
-        TestUtil.click(lifePartners, "Life Partners clicked");
-        Assert.assertTrue(lifePartnersText.isDisplayed());
         JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'center'});", y0);
+        TestUtil.JsClick(y0, "y0 clicked");
+        Assert.assertTrue(y0Text.isDisplayed());
+        js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'center'});", y1);
+        TestUtil.JsClick(y1, "y1 clicked");
+        Assert.assertTrue(y1Text.isDisplayed());
+        js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'center'});", lya);
+        TestUtil.JsClick(lya, "y0 clicked");
+        TestUtil.getFullPageScreenShot();
+        Assert.assertTrue(partnersActiveInLastFinancialYearText.isDisplayed());
+        js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'center'});", lifePartners);
+        TestUtil.JsClick(lifePartners, "Life Partners clicked");
+        Assert.assertTrue(lifePartnersText.isDisplayed());
         js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'center'});", cvPartnersClick);
         TestUtil.JsClick(cvPartnersClick, "CV Partners clicked");
         Assert.assertTrue(cvPartnersAsserttext.isDisplayed());
-        TestUtil.getFullPageScreenShot();
+        js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'center'});", healthPartnersClick);
         TestUtil.JsClick(healthPartnersClick, "healthPartnersClick clicked");
-        TestUtil.getFullPageScreenShot();
         Assert.assertTrue(healthPartnersAsserttext.isDisplayed());
+        TestUtil.getFullPageScreenShot();
         Assert.assertTrue(filterAsserttext.isDisplayed());
         Assert.assertTrue(sortByAsserttext.isDisplayed());
         TestUtil.click(dropdown, "dropdown clicked");
