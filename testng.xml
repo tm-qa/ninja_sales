@@ -23,6 +23,7 @@
 
             <class name="Ninja.ninjaLogin"></class>
             <class name="Mypartners.MyPartner"></class>
+            <class name="Ninja.policyIssuanceTest"></class>
         </classes>
 
     </test>
