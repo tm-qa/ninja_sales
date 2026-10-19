@@ -15,7 +15,7 @@ import util.iTestListener;
 
 import java.lang.reflect.Method;
 @Listeners(iTestListener.class)
-@Test(groups = {"Full_suite"})
+@Test(groups = {"ninjaLogin","Sales"})
 public class ninjaLogin extends TestBase {
     public ninjaLogin() {
         super();
@@ -54,7 +54,8 @@ public class ninjaLogin extends TestBase {
         QR = new quote_request();
         MI = new mis();
 //        driver.get(System.getProperty("ninjaurl"));
-        driver.get(prop.getProperty("URL"));
+      //  driver.get(prop.getProperty("URL"));
+        driver.get(System.getProperty("ninjaurl"));
         Thread.sleep(2000);
         login.NinjaLogin("6999123456");
         url = driver.getCurrentUrl();

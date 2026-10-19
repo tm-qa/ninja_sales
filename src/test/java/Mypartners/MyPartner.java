@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.awt.*;
 import java.io.IOException;
-@Test(groups = {"MyPartner"})
+@Test(groups = {"MyPartner","Sales"})
 public class MyPartner extends TestBase {
     public MyPartner() {
         super();

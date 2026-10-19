@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import java.awt.*;
 import java.io.IOException;
-
+@Test(groups = {"policyIssuanceTest","Sales"})
 public class policyIssuanceTest extends TestBase {
     public policyIssuanceTest() {
         super();
@@ -37,6 +37,7 @@ public class policyIssuanceTest extends TestBase {
         BI = new branch_issuance();
         MI = new mis();
 //        calculator.login(prop.getProperty("EMAIL"), prop.getProperty("PASSWORD"));
+        driver.get(System.getProperty("ninjaurl"));
         login.NinjaLogin("6999123456");
         url = driver.getCurrentUrl();
     }
