@@ -37,15 +37,15 @@ public class policyIssuanceTest extends TestBase {
         BI = new branch_issuance();
         MI = new mis();
 //        calculator.login(prop.getProperty("EMAIL"), prop.getProperty("PASSWORD"));
+    }
+
+    @BeforeMethod
+    public void less() throws Exception {
         driver.get(System.getProperty("ninjaurl"));
+        Thread.sleep(2000);
         login.NinjaLogin("6999123456");
         url = driver.getCurrentUrl();
     }
-
-//    @BeforeMethod
-//    public void less() {
-//        TestUtil.LoginLessNinja();
-//    }
 
 
     @Test(description = "FW Issue with my Quote Journey")

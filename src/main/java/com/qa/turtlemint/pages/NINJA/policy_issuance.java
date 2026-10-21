@@ -114,9 +114,11 @@ public class policy_issuance extends TestBase {
         TestUtil.sendKeys(searchField, requestId, "Entered request id");
         TestUtil.sendKeys(searchField, String.valueOf(Keys.ENTER), "Clicked on enter button");
         WebCommands.staticSleep(5000);
+        TestUtil.getScreenShot();
         TestUtil.click(selectLead, "Clicked on lead");
         TestUtil.click(ownButton, "Clicked on own button");
         WebCommands.staticSleep(10000);
+        TestUtil.getScreenShot();
         TestUtil.click(issuanceStatusDD, "Clicked on issuance status dropdown");
         TestUtil.click(issuanceStatusCancelled, "Selected cancelled status");
         WebCommands.staticSleep(1000);
@@ -134,6 +136,7 @@ public class policy_issuance extends TestBase {
         WebCommands.staticSleep(1000);
         TestUtil.click(SaveIssuanceButton, "Clicked on save issuance button");
         WebCommands.staticSleep(10000);
+        TestUtil.getScreenShot();
         Assert.assertTrue(viewMode.isDisplayed(), "View mode is not displayed after saving issuance");
     }
 
@@ -153,5 +156,6 @@ public class policy_issuance extends TestBase {
         TestUtil.sendKeys(policyNumberField,"123980ABCD2","Entered policy number");
         TestUtil.click(proceedButton,"Clicked on proceed button");
         WebCommands.staticSleep(3000);
+        TestUtil.getScreenShot();
     }
 }
