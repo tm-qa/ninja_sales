@@ -13,7 +13,7 @@ import org.testng.Assert;
 public class mis extends TestBase {
     @FindBy(xpath = "//input[@placeholder='Search by Policy No. or Registration No. (min. 4 chars)']")
     WebElement searchField;
-    @FindBy(xpath = "//*[text()='Action Reqd']//..//..//..")
+    @FindBy(xpath = "//*[text()='Action Reqd']/../../..//..")
     WebElement selectLead;
     @FindBy(xpath = "//span[@class='anticon']")
     WebElement editAction;
