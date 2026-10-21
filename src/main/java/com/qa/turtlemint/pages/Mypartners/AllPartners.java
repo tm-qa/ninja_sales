@@ -67,7 +67,7 @@ public class AllPartners  {
     WebElement alternativeMobile;
 
 
-    @FindBy(xpath = "//*[contains(text(),'Alternate Number edited successfully for')]")
+    @FindBy(xpath = "//p[contains(text(),'Alternate Number edited successfully for')]")
     WebElement alternateNumberEditedSuccessfully;
 
     @FindBy(xpath = "//span[text()='Update Disposition']")
@@ -154,7 +154,11 @@ public class AllPartners  {
         Thread.sleep(3000);
         alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");
-        Assert.assertTrue(alternateNumberEditedSuccessfully.isDisplayed());
+        TestUtil.waitUntilVisibilityOfElement(alternateNumberEditedSuccessfully);
+        Assert.assertTrue(
+                alternateNumberEditedSuccessfully.isDisplayed(),
+                "Alternate Number edited successfully message is not displayed"
+        );
         TestUtil.getFullPageScreenShot();
         TestUtil.click(closeButton, "Close button clicked");
         TestUtil.click(ActionButton, "Action Button clicked");

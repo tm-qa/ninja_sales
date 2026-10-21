@@ -213,7 +213,11 @@ public class FollowUps {
         Thread.sleep(3000);
         alternativeMobile.sendKeys("9112345679");
         TestUtil.click(save, "Save clicked");
-        Assert.assertTrue(alternateNumberEditedSuccessfully.isDisplayed());
+        TestUtil.waitUntilVisibilityOfElement(alternateNumberEditedSuccessfully);
+        Assert.assertTrue(
+                alternateNumberEditedSuccessfully.isDisplayed(),
+                "Alternate Number edited successfully message is not displayed"
+        );
         TestUtil.getFullPageScreenShot();
         TestUtil.click(closeButton, "Close button clicked");
         TestUtil.click(ellipsis, "Ellipsis clicked");
