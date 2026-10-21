@@ -154,6 +154,7 @@ public class AllPartners  {
         Thread.sleep(2000);
         TestUtil.getScreenShot();
         Thread.sleep(2000);
+         driver.getCurrentUrl();
         alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");
         Thread.sleep(4000);
