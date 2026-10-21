@@ -118,7 +118,7 @@ public class FollowUps {
     @FindBy(id = "alternativeMobile")
     WebElement alternativeMobile;
 
-    @FindBy(xpath = "//p[text()='Alternate Number edited successfully for ']")
+    @FindBy(xpath = "//p[contains(normalize-space(.),'Alternate Number edited successfully for')]")
     WebElement alternateNumberEditedSuccessfully;
 
 
@@ -212,7 +212,7 @@ public class FollowUps {
         alternativeMobile.sendKeys(Keys.COMMAND + "a");
         alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         Assert.assertTrue(alternateNumberEditedSuccessfully.isDisplayed());
         TestUtil.getFullPageScreenShot();
         TestUtil.click(closeButton, "Close button clicked");
