@@ -146,15 +146,12 @@ public class AllPartners  {
         Thread.sleep(5000);
         TestUtil.click(ActionButton, "Action Button clicked");
         TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
+        Thread.sleep(3000);
         TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
         alternativeMobile.sendKeys(Keys.COMMAND + "a");
-        Thread.sleep(2000);
         TestUtil.getFullPageScreenShot();
-        alternativeMobile.clear();
-        Thread.sleep(2000);
-        TestUtil.getScreenShot();
-        Thread.sleep(2000);
-         driver.getCurrentUrl();
+        alternativeMobile.sendKeys(Keys.BACK_SPACE);
+        Thread.sleep(3000);
         alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");
         Thread.sleep(4000);

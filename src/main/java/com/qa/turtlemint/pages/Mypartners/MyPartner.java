@@ -1,6 +1,7 @@
 package com.qa.turtlemint.pages.Mypartners;
 import com.qa.turtlemint.base.TestBase;
 import com.qa.turtlemint.util.TestUtil;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -330,7 +331,9 @@ public class MyPartner extends TestBase {
                 "Renewal Due Current Month High To Low clicked");
         TestUtil.click(dropdown, "Dropdown clicked");
         TestUtil.waitUntilVisibilityOfElement(editTable);
-        TestUtil.click(editTable, "Edit Table clicked");
+       WebElement table =driver.findElement(By.xpath("//img[contains(@src,'edit-table')]"));
+       TestUtil.click(table,"Edit Table clicked");
+       TestUtil.click(editTable, "Edit Table clicked");
         TestUtil.click(applyAll, "Apply All clicked");
         TestUtil.click(reset, "Reset clicked");
         TestUtil.getFullPageScreenShot();
