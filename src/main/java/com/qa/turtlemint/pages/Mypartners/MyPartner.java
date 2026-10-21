@@ -185,7 +185,7 @@ public class MyPartner extends TestBase {
     @FindBy(xpath = "//div[@title='Last Monthly Premium (High to Low)']")
     WebElement lastMonthlyPremiumHighToLow;
 
-    @FindBy(xpath = "//div[@title='Last Health Mon. Prem (Low to High)']")
+    @FindBy(xpath = "//div[@title='Last Monthly Premium (Low to High)']")
     WebElement lastMonthlyPremiumLowToHigh;
 
     @FindBy(xpath = "//div[@title='Verification Date (Most Recent)']")

@@ -2,10 +2,7 @@ package com.qa.turtlemint.pages.Mypartners;
 
 import com.qa.turtlemint.util.LogUtils;
 import com.qa.turtlemint.util.TestUtil;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -118,9 +115,8 @@ public class FollowUps {
     @FindBy(id = "alternativeMobile")
     WebElement alternativeMobile;
 
-    @FindBy(xpath = "//p[contains(normalize-space(.),'Alternate Number edited successfully for')]")
+    @FindBy(xpath = "//*[contains(text(),'Alternate Number edited successfully for')]")
     WebElement alternateNumberEditedSuccessfully;
-
 
     @FindBy(xpath = "//span[text()='Update Disposition']")
     WebElement updateDisposition;
@@ -259,9 +255,19 @@ public class FollowUps {
         }catch (Exception e){
 
         }
-//        act.moveToElement(save).click().build().perform();
+        Thread.sleep(3000);
         TestUtil.click(save, "Save clicked");
-        Thread.sleep(5000);
+        Thread.sleep(4000);
+        try{
+            if(save.isDisplayed()){
+                LogUtils.info("Save cta is visible cliking Save ");
+                Thread.sleep(3000);
+                TestUtil.click(save, "Save clicked");
+            }
+        }catch (NoSuchElementException e){
+            LogUtils.info("Save cta is not visible proceeding further");
+        }
+        Thread.sleep(4000);
         TestUtil.click(followUpslead, "followUpslead clicked");
         TestUtil.click(markAsComplete1, "Mark As Complete clicked");
         TestUtil.click(ellipsis, "Ellipsis clicked");
