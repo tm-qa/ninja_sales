@@ -13,7 +13,7 @@ import org.testng.Assert;
 public class mis extends TestBase {
     @FindBy(xpath = "//input[@placeholder='Search by Policy No. or Registration No. (min. 4 chars)']")
     WebElement searchField;
-    @FindBy(xpath = "//*[text()='Action Reqd']")
+    @FindBy(xpath = "//*[text()='Action Reqd']//..//..")
     WebElement selectLead;
     @FindBy(xpath = "//span[@class='anticon']")
     WebElement editAction;
@@ -51,6 +51,7 @@ public class mis extends TestBase {
         TestUtil.getScreenShot();
         TestUtil.click(selectLead, "Clicked on lead");
         WebCommands.staticSleep(5000);
+        TestUtil.getScreenShot();
         TestUtil.click(editAction,"Clicked on edit option");
         TestUtil.click(policyStatusDD, "Clicked on policy status dropdown");
         TestUtil.click(policyStatusJunk, "Selected Junk status");
