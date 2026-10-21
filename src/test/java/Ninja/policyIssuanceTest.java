@@ -42,6 +42,7 @@ public class policyIssuanceTest extends TestBase {
     @BeforeMethod
     public void less() throws Exception {
         driver.get(System.getProperty("ninjaurl"));
+//        driver.get(prop.getProperty("URL"));
         Thread.sleep(2000);
         login.NinjaLogin("6999123456");
         url = driver.getCurrentUrl();
