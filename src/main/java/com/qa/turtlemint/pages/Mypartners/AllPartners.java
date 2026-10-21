@@ -148,7 +148,8 @@ public class AllPartners  {
         TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
         TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
         alternativeMobile.sendKeys(Keys.COMMAND + "a");
-        act.sendKeys(Keys.DELETE).build().perform();
+        alternativeMobile.clear();
+        Thread.sleep(2000);
         alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");
         Thread.sleep(4000);
