@@ -207,7 +207,8 @@ public class FollowUps {
         TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
         TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
         alternativeMobile.sendKeys(Keys.COMMAND + "a");
-        alternativeMobile.sendKeys(Keys.BACK_SPACE);
+        Actions act = new Actions(driver);
+        act.sendKeys(Keys.DELETE).build().perform();
         alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");
         Thread.sleep(4000);
@@ -249,7 +250,6 @@ public class FollowUps {
                 )
         );
         TestUtil.click(nextDayDate, "Next day date selected");
-        Actions act = new Actions(driver);
         Thread.sleep(3000);
         try {
             TestUtil.click(addReminderNote,"side clickjed");
