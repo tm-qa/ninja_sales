@@ -16,7 +16,7 @@ public class quote_request extends TestBase {
     WebElement searchField;
     @FindBy(xpath = "//input[@placeholder='Search by Reg Number, Customer Name, DP Name, DP Phone Number']")
     WebElement searchFieldIssuance;
-    @FindBy(xpath = "//*[text()='KAM']")
+    @FindBy(xpath = "//*[contains(text(),'automation')] | //*[contains(text(),'test shubham')]")
     WebElement selectLead;
     @FindBy(xpath = "//button[normalize-space()='Own' or normalize-space()='OWN']")
     WebElement ownButton;
@@ -113,15 +113,18 @@ public class quote_request extends TestBase {
     JavascriptExecutor js = (JavascriptExecutor) driver;
     public void SearchRequestAndClose(String Request_id) {
         WebCommands.staticSleep(1000);
-        TestUtil.sendKeys(searchField, Request_id, "Entered MIS id");
+        TestUtil.sendKeys(searchField, Request_id, "Entered Request ID");
         TestUtil.sendKeys(searchField, String.valueOf(Keys.ENTER), "Clicked on enter button");
         WebCommands.staticSleep(2000);
         TestUtil.click(selectLead, "Clicked on lead");
         WebCommands.staticSleep(3000);
         TestUtil.click(ownButton, "Clicked on own button");
-        WebCommands.staticSleep(22000);
+        WebCommands.staticSleep(25000);
+        TestUtil.getScreenShot();
         driver.switchTo().frame(0);
-        TestUtil.click(finaliseData,"Clicked on finalise Data button");
+        WebCommands.staticSleep(500);
+        js.executeScript("arguments[0].click();", finaliseData);
+      //  TestUtil.click(finaliseData,"Clicked on finalise Data button");
         WebCommands.staticSleep(8000);
         driver.switchTo().frame(0);
         js.executeScript("arguments[0].scrollIntoView(true);", quotesPlus);
@@ -136,6 +139,7 @@ public class quote_request extends TestBase {
         js.executeScript("arguments[0].scrollIntoView(true);", close);
         js.executeScript("arguments[0].click();", close);
         WebCommands.staticSleep(5000);
+        TestUtil.getScreenShot();
         driver.switchTo().defaultContent();
     }
     public void SearchRequestAndBuy(String Request_id) {
@@ -145,6 +149,7 @@ public class quote_request extends TestBase {
         WebCommands.staticSleep(2000);
         TestUtil.click(selectLead, "Clicked on lead");
         WebCommands.staticSleep(12000);
+        TestUtil.getScreenShot();
         driver.switchTo().frame(0);
         TestUtil.click(buyButton,"Clicked on buy button");
         WebCommands.staticSleep(1000);
@@ -153,6 +158,7 @@ public class quote_request extends TestBase {
         String issuanceSubmittedText = issuanceSubmitted.getText();
         Assert.assertTrue(issuanceSubmittedText.contains("Issuance request submitted!"));
         WebCommands.staticSleep(2000);
+        TestUtil.getScreenShot();
         driver.switchTo().defaultContent();
         TestUtil.click(backArrow, "Clicked on back button");
         WebCommands.staticSleep(2000);
@@ -167,6 +173,7 @@ public class quote_request extends TestBase {
         WebCommands.staticSleep(1000);
         TestUtil.click(ownButton, "Clicked on own button");
         WebCommands.staticSleep(10000);
+        TestUtil.getScreenShot();
         TestUtil.sendKeys(proposerFirstName,"Testing","Proposer first name entered");
         TestUtil.sendKeys(proposerLastName,"Testing","Proposer last name entered");
         TestUtil.sendKeys(proposerPhone,"6888812345","Proposer phone entered");
@@ -227,6 +234,7 @@ public class quote_request extends TestBase {
         driver.switchTo().defaultContent();
         TestUtil.click(saveButton, "Clicked on Save Button");
         WebCommands.staticSleep(20000);
+        TestUtil.getScreenShot();
         js.executeScript("window.scrollTo(0, 0);");
         js.executeScript("arguments[0].scrollIntoView(true);", policyDetailsID);
         Assert.assertTrue(viewMode.isDisplayed(), "View mode is not displayed after saving issuance");
@@ -238,6 +246,7 @@ public class quote_request extends TestBase {
         WebCommands.staticSleep(1000);
         TestUtil.click(MIS,"CLicked on MIS");
         WebCommands.staticSleep(2000);
+        TestUtil.getScreenShot();
         return MISid;
 
     }

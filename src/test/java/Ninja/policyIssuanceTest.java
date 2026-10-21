@@ -74,6 +74,6 @@ public class policyIssuanceTest extends TestBase {
 
     @AfterClass
     public void close() {
-//        driver.quit();
+        driver.quit();
     }
 }

@@ -128,7 +128,7 @@ public class ninjaLogin extends TestBase {
     }
     @AfterMethod
     public void close() {
-//        driver.quit();
+        driver.quit();
     }
 
 //    @AfterClass

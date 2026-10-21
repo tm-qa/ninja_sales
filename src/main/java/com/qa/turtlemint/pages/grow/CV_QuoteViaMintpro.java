@@ -26,7 +26,7 @@ public class CV_QuoteViaMintpro extends TestBase {
     WebElement Dp;
     @FindBy(xpath = "//div[text()='(Dp-1593963) test shubham']")
     WebElement DpSan;
-    @FindBy(xpath = "//div[text()='(Dp-402392) mr automation']")
+    @FindBy(xpath = "//div[text()='(402392) mr automation']")
     WebElement Automation;
     @FindBy(xpath = "//span[text()= 'Select Vertical']")
     WebElement Vertical;
@@ -177,7 +177,8 @@ public class CV_QuoteViaMintpro extends TestBase {
         String insurerSelectText = insurerSelect.getText();
         System.out.println("Looking for your favourite quote for " +insurerSelectText +" insurer");
         TestUtil.click(requestQuoteCTA,"clicked on request quote cta");
-        WebCommands.staticSleep(18000);
+        WebCommands.staticSleep(20000);
+        TestUtil.getScreenShot();
         driver.switchTo().defaultContent();
         String requestIDText = requestID.getText();
         System.out.println("request ID is : "+requestIDText);

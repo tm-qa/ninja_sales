@@ -81,6 +81,6 @@ public class MyPartner extends TestBase {
     }
     @AfterClass
     public void close() {
-        driver.quit();
+//        driver.quit();
     }
 }
