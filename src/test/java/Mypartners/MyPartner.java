@@ -44,8 +44,8 @@ public class MyPartner extends TestBase {
         reportasale = new Reportasale();
         filter = new Filter();
 //        calculator.login(prop.getProperty("EMAIL"), prop.getProperty("PASSWORD"));
-      //  driver.get(prop.getProperty("URL"));
-        driver.get(System.getProperty("ninjaurl"));
+        driver.get(prop.getProperty("URL"));
+      //  driver.get(System.getProperty("ninjaurl"));
         login.NinjaLogin("6999123456");
         url = driver.getCurrentUrl();
     }
