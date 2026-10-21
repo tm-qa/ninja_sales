@@ -154,7 +154,6 @@ public class AllPartners  {
         Thread.sleep(3000);
         alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");
-        Thread.sleep(4000);
         Assert.assertTrue(alternateNumberEditedSuccessfully.isDisplayed());
         TestUtil.getFullPageScreenShot();
         TestUtil.click(closeButton, "Close button clicked");

@@ -213,7 +213,6 @@ public class FollowUps {
         Thread.sleep(3000);
         alternativeMobile.sendKeys("9112345679");
         TestUtil.click(save, "Save clicked");
-        Thread.sleep(4000);
         Assert.assertTrue(alternateNumberEditedSuccessfully.isDisplayed());
         TestUtil.getFullPageScreenShot();
         TestUtil.click(closeButton, "Close button clicked");
