@@ -124,13 +124,13 @@ public class AllPartners  {
         Actions act = new Actions(driver);
         Thread.sleep(3000);
         try {
-            TestUtil.click(sideelement,"side clickjed");
+            TestUtil.click(addReminderNote,"side clickjed");
 
         }catch (Exception e){
 
         }
         Thread.sleep(3000);
-        act.moveToElement(save).click().build().perform();
+//        act.moveToElement(save).click().build().perform();
         TestUtil.click(save, "Save clicked");
         Thread.sleep(5000);
         TestUtil.click(ActionButton, "Action Button clicked");

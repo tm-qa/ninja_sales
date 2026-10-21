@@ -253,7 +253,13 @@ public class FollowUps {
         TestUtil.click(nextDayDate, "Next day date selected");
         Actions act = new Actions(driver);
         Thread.sleep(3000);
-        act.moveToElement(save).click().build().perform();
+        try {
+            TestUtil.click(addReminderNote,"side clickjed");
+
+        }catch (Exception e){
+
+        }
+//        act.moveToElement(save).click().build().perform();
         TestUtil.click(save, "Save clicked");
         Thread.sleep(5000);
         TestUtil.click(followUpslead, "followUpslead clicked");

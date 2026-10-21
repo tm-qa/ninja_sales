@@ -312,6 +312,7 @@ public class MyPartner extends TestBase {
         Thread.sleep(5000);
         TestUtil.click(lastMonthlyPremiumHighToLow, "Last Monthly Premium High To Low clicked");
         TestUtil.click(dropdown, "Dropdown clicked");
+        Thread.sleep(5000);
         TestUtil.click(lastMonthlyPremiumLowToHigh, "Last Monthly Premium Low To High clicked");
         TestUtil.click(dropdown, "Dropdown clicked");
         TestUtil.click(verificationDateMostRecent, "Verification Date Most Recent clicked");
