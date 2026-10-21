@@ -48,6 +48,7 @@ public class mis extends TestBase {
         TestUtil.sendKeys(searchField, MISid, "Entered MIS id");
         TestUtil.sendKeys(searchField, String.valueOf(Keys.ENTER), "Clicked on enter button");
         WebCommands.staticSleep(5000);
+        TestUtil.getScreenShot();
         TestUtil.click(selectLead, "Clicked on lead");
         WebCommands.staticSleep(5000);
         TestUtil.click(editAction,"Clicked on edit option");
@@ -59,6 +60,7 @@ public class mis extends TestBase {
         WebCommands.staticSleep(1000);
         TestUtil.click(SaveSaleButton, "Clicked on save issuance button");
         WebCommands.staticSleep(10000);
+        TestUtil.getScreenShot();
         Assert.assertTrue(viewMode.isDisplayed(), "View mode is not displayed after saving issuance");
         Assert.assertTrue(junkText.isDisplayed(), "Junk text not showing");
         System.out.println("++++++++++ POLICY MARKED AS JUNK +++++++++");

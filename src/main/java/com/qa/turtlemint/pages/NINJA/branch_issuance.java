@@ -94,12 +94,14 @@ public class branch_issuance extends TestBase {
 //        TestUtil.click(RTOlocationTardeo, "RTO location Tardeo selected");
         TestUtil.sendKeys(netPremium, "1234", "Entered Net Premium");
         WebCommands.staticSleep(1000);
-        TestUtil.ElementPresent(uploadFile, "/Users/abhinavkamble/Documents/sampleJPG.jpg", "File uploaded");
+        TestUtil.ElementPresent(uploadFile, "/home/ubuntu/storage/sampleJPG.jpg", "File uploaded");
+//        TestUtil.ElementPresent(uploadFile, "/Users/abhinavkamble/Documents/sampleJPG.jpg", "File uploaded");
         TestUtil.click(policyCopy, "Selected policy Copy as document Type");
         TestUtil.click(OKButton, "Clicked on OK Button");
         WebCommands.staticSleep(2000);
         TestUtil.click(saveButton, "Clicked on Save Button");
         WebCommands.staticSleep(5000);
+        TestUtil.getScreenShot();
         Assert.assertTrue(viewMode.isDisplayed(), "View mode is not displayed after saving issuance");
         MISid = policyDetailsID.getAttribute("value");
         System.out.println("Policy Details ID: " + MISid);
