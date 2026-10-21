@@ -1,6 +1,7 @@
 package com.qa.turtlemint.pages.Mypartners;
 import com.qa.turtlemint.util.LogUtils;
 import com.qa.turtlemint.util.TestUtil;
+import jdk.incubator.vector.VectorOperators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -148,7 +149,11 @@ public class AllPartners  {
         TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
         TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
         alternativeMobile.sendKeys(Keys.COMMAND + "a");
+        Thread.sleep(2000);
+        TestUtil.getScreenShot();
         alternativeMobile.clear();
+        Thread.sleep(2000);
+        TestUtil.getScreenShot();
         Thread.sleep(2000);
         alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");

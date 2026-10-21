@@ -207,8 +207,12 @@ public class FollowUps {
         TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
         TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
         alternativeMobile.sendKeys(Keys.COMMAND + "a");
+        Thread.sleep(2000);
+        TestUtil.getScreenShot();
         Actions act = new Actions(driver);
         alternativeMobile.clear();
+        Thread.sleep(2000);
+        TestUtil.getScreenShot();
         Thread.sleep(2000);
         alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");
