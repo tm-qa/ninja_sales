@@ -1,7 +1,9 @@
 package com.qa.turtlemint.pages.Mypartners;
+import com.qa.turtlemint.util.LogUtils;
 import com.qa.turtlemint.util.TestUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -55,7 +57,7 @@ public class AllPartners  {
     WebElement save;
 
 
-    @FindBy(xpath = "//div[@class='sc-gsFSXq TVESb']")
+    @FindBy(xpath = "//*[text()='Date & Time']")
     WebElement sideelement;
 
     @FindBy(xpath = "//*[normalize-space()='Add Alternate Number']")
@@ -65,7 +67,7 @@ public class AllPartners  {
     WebElement alternativeMobile;
 
 
-    @FindBy(xpath = "//p[text()='Alternate Number edited successfully for ']")
+    @FindBy(xpath = "//*[contains(text(),'Alternate Number edited successfully for')]")
     WebElement alternateNumberEditedSuccessfully;
 
     @FindBy(xpath = "//span[text()='Update Disposition']")
@@ -123,16 +125,33 @@ public class AllPartners  {
         TestUtil.click(nextDayDate, "Next day date selected");
         Actions act = new Actions(driver);
         Thread.sleep(3000);
-        act.moveToElement(save).click().build().perform();
+        try {
+            TestUtil.click(addReminderNote,"side clickjed");
+
+        }catch (Exception e){
+
+        }
+        Thread.sleep(3000);
         TestUtil.click(save, "Save clicked");
+        Thread.sleep(4000);
+        try{
+            if(save.isDisplayed()){
+                LogUtils.info("Save cta is visible cliking Save ");
+                Thread.sleep(3000);
+                TestUtil.click(save, "Save clicked");
+            }
+        }catch (NoSuchElementException e){
+            LogUtils.info("Save cta is not visible proceeding further");
+        }
         Thread.sleep(5000);
         TestUtil.click(ActionButton, "Action Button clicked");
         TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
         TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
         alternativeMobile.sendKeys(Keys.COMMAND + "a");
+        alternativeMobile.sendKeys(Keys.BACK_SPACE);
         alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         Assert.assertTrue(alternateNumberEditedSuccessfully.isDisplayed());
         TestUtil.getFullPageScreenShot();
         TestUtil.click(closeButton, "Close button clicked");

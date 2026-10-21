@@ -2,10 +2,7 @@ package com.qa.turtlemint.pages.Mypartners;
 
 import com.qa.turtlemint.util.LogUtils;
 import com.qa.turtlemint.util.TestUtil;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -118,9 +115,8 @@ public class FollowUps {
     @FindBy(id = "alternativeMobile")
     WebElement alternativeMobile;
 
-    @FindBy(xpath = "//p[text()='Alternate Number edited successfully for ']")
+    @FindBy(xpath = "//*[contains(text(),'Alternate Number edited successfully for')]")
     WebElement alternateNumberEditedSuccessfully;
-
 
     @FindBy(xpath = "//span[text()='Update Disposition']")
     WebElement updateDisposition;
@@ -209,10 +205,12 @@ public class FollowUps {
         TestUtil.click(closeButton, "Close button clicked");
         TestUtil.click(ellipsis, "Ellipsis clicked");
         TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
+        TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
         alternativeMobile.sendKeys(Keys.COMMAND + "a");
+        alternativeMobile.sendKeys(Keys.BACK_SPACE);
         alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");
-        Thread.sleep(3000);
+        Thread.sleep(4000);
         Assert.assertTrue(alternateNumberEditedSuccessfully.isDisplayed());
         TestUtil.getFullPageScreenShot();
         TestUtil.click(closeButton, "Close button clicked");
@@ -253,9 +251,25 @@ public class FollowUps {
         TestUtil.click(nextDayDate, "Next day date selected");
         Actions act = new Actions(driver);
         Thread.sleep(3000);
-        act.moveToElement(save).click().build().perform();
+        try {
+            TestUtil.click(addReminderNote,"side clickjed");
+
+        }catch (Exception e){
+
+        }
+        Thread.sleep(3000);
         TestUtil.click(save, "Save clicked");
-        Thread.sleep(5000);
+        Thread.sleep(4000);
+        try{
+            if(save.isDisplayed()){
+                LogUtils.info("Save cta is visible cliking Save ");
+                Thread.sleep(3000);
+                TestUtil.click(save, "Save clicked");
+            }
+        }catch (NoSuchElementException e){
+            LogUtils.info("Save cta is not visible proceeding further");
+        }
+        Thread.sleep(4000);
         TestUtil.click(followUpslead, "followUpslead clicked");
         TestUtil.click(markAsComplete1, "Mark As Complete clicked");
         TestUtil.click(ellipsis, "Ellipsis clicked");
