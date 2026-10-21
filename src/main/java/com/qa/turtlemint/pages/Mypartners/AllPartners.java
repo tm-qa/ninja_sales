@@ -55,7 +55,7 @@ public class AllPartners  {
     WebElement save;
 
 
-    @FindBy(xpath = "//div[@class='sc-gsFSXq TVESb']")
+    @FindBy(xpath = "//*[text()='Date & Time']")
     WebElement sideelement;
 
     @FindBy(xpath = "//*[normalize-space()='Add Alternate Number']")
@@ -122,6 +122,13 @@ public class AllPartners  {
 
         TestUtil.click(nextDayDate, "Next day date selected");
         Actions act = new Actions(driver);
+        Thread.sleep(3000);
+        try {
+            TestUtil.click(sideelement,"side clickjed");
+
+        }catch (Exception e){
+
+        }
         Thread.sleep(3000);
         act.moveToElement(save).click().build().perform();
         TestUtil.click(save, "Save clicked");
