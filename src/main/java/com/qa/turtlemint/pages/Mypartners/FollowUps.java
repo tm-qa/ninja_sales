@@ -209,7 +209,7 @@ public class FollowUps {
         TestUtil.click(closeButton, "Close button clicked");
         TestUtil.click(ellipsis, "Ellipsis clicked");
         TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
-        alternativeMobile.sendKeys(Keys.COMMAND + "a");
+        alternativeMobile.sendKeys(Keys.COMMAND + "a",Keys.BACK_SPACE);
         alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");
         Thread.sleep(4000);
