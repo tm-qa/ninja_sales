@@ -112,7 +112,7 @@ public class FollowUps {
     @FindBy(xpath = "//span[text()='Add Alternate Number']")
     WebElement addAlternateNumber;
 
-    @FindBy(id = "alternativeMobile")
+    @FindBy(xpath = "//input[@type=\"number\"]")
     WebElement alternativeMobile;
 
     @FindBy(xpath = "//*[contains(text(),'Alternate Number edited successfully for')]")
@@ -206,15 +206,15 @@ public class FollowUps {
         TestUtil.click(ellipsis, "Ellipsis clicked");
         TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
         Thread.sleep(3000);
-        TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
+        TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
         Thread.sleep(3000);
         TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
         Thread.sleep(3000);
-        act.moveToElement(alternativeMobile).doubleClick().build().perform();
+        act.moveToElement(alternativeMobile).doubleClick().doubleClick().build().perform();
         Thread.sleep(3000);
         alternativeMobile.sendKeys(Keys.BACK_SPACE);
         Thread.sleep(3000);
-        alternativeMobile.sendKeys("9112345678");
+        TestUtil.sendKeys(alternativeMobile, "9112345668", "Alternative Mobile entered");
         TestUtil.click(save, "Save clicked");
         TestUtil.waitUntilVisibilityOfElement(alternateNumberEditedSuccessfully);
         Assert.assertTrue(

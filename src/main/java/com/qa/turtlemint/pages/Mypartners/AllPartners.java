@@ -63,7 +63,7 @@ public class AllPartners  {
     @FindBy(xpath = "//*[normalize-space()='Add Alternate Number']")
     WebElement addAlternateNumber;
 
-    @FindBy(id = "alternativeMobile")
+    @FindBy(xpath = "//input[@id='alternativeMobile']")
     WebElement alternativeMobile;
 
 
@@ -149,11 +149,13 @@ public class AllPartners  {
         Thread.sleep(3000);
         TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
         Thread.sleep(3000);
-       act.moveToElement(alternativeMobile).doubleClick().build().perform();
+        TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
+        Thread.sleep(3000);
+    act.moveToElement(alternativeMobile).doubleClick().doubleClick().build().perform();
         Thread.sleep(3000);
         alternativeMobile.sendKeys(Keys.BACK_SPACE);
         Thread.sleep(3000);
-        alternativeMobile.sendKeys("9112345678");
+        TestUtil.sendKeys(alternativeMobile, "9112345668", "Alternative Mobile entered");
         TestUtil.click(save, "Save clicked");
         TestUtil.waitUntilVisibilityOfElement(alternateNumberEditedSuccessfully);
         Assert.assertTrue(
