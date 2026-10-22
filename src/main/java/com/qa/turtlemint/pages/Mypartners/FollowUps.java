@@ -163,7 +163,7 @@ public class FollowUps {
     @FindBy(xpath = "//textarea[@id='addNote_note']")
     WebElement addNoteNote;
 
-
+    Actions act = new Actions(driver);
     public void folloups() throws InterruptedException, IOException {
 
         TestUtil.click(MyPartners, "My Partners clicked");
@@ -206,12 +206,15 @@ public class FollowUps {
         TestUtil.click(ellipsis, "Ellipsis clicked");
         TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
         Thread.sleep(3000);
+        TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
+        Thread.sleep(3000);
         TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
-        alternativeMobile.sendKeys(Keys.COMMAND + "a");
-        TestUtil.getFullPageScreenShot();
+        Thread.sleep(3000);
+        act.moveToElement(alternativeMobile).doubleClick().build().perform();
+        Thread.sleep(3000);
         alternativeMobile.sendKeys(Keys.BACK_SPACE);
         Thread.sleep(3000);
-        alternativeMobile.sendKeys("9112345679");
+        alternativeMobile.sendKeys("9112345678");
         TestUtil.click(save, "Save clicked");
         TestUtil.waitUntilVisibilityOfElement(alternateNumberEditedSuccessfully);
         Assert.assertTrue(

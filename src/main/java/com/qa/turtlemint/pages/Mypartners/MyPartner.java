@@ -208,6 +208,9 @@ public class MyPartner extends TestBase {
     @FindBy(xpath = "//div[@title='Renewal Due Current Month (High To Low)']")
     WebElement renewalDueCurrentMonthHighToLow;
 
+    @FindBy(xpath = "//img[contains(@src,'edit-table')]")
+    WebElement editTable;
+
     @FindBy(xpath = "//span[normalize-space()='Back To Home']")
     WebElement backToHome;
 
@@ -325,12 +328,13 @@ public class MyPartner extends TestBase {
         TestUtil.click(dropdown, "Dropdown clicked");
         TestUtil.click(lastSaleDateMostRecent, "Last Sale Date Most Recent clicked");
         TestUtil.click(dropdown, "Dropdown clicked");
-        TestUtil.click(renewalDueCurrentMonthHighToLow,
-                "Renewal Due Current Month High To Low clicked");
+        TestUtil.click(renewalDueCurrentMonthHighToLow, "Renewal Due Current Month High To Low clicked");
         TestUtil.click(dropdown, "Dropdown clicked");
-        By editTableLocator = By.xpath("//span[contains(@class,'anticon')]/img[contains(@src,'edit-table')]");
-        TestUtil.waitUntilElementToBeVisible(editTableLocator);
-        WebElement table = driver.findElement(editTableLocator);
+        TestUtil.waitUntilVisibilityOfElement(editTable);
+        Thread.sleep(5000);
+        WebElement table = driver.findElement(
+                By.xpath("//img[contains(@src,'edit-table')]")
+        );
         TestUtil.click(table, "Edit Table clicked");
         TestUtil.click(applyAll, "Apply All clicked");
         TestUtil.click(reset, "Reset clicked");
