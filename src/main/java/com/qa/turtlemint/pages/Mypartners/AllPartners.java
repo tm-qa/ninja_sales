@@ -149,11 +149,11 @@ public class AllPartners  {
         Thread.sleep(3000);
         TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
         Thread.sleep(3000);
-    act.moveToElement(alternativeMobile).doubleClick().doubleClick().build().perform();
+        for (int i = 0; i < 15; i++) {
+            alternativeMobile.sendKeys(Keys.BACK_SPACE);
+        }
         Thread.sleep(3000);
-        alternativeMobile.sendKeys(Keys.BACK_SPACE);
-        Thread.sleep(3000);
-        TestUtil.sendKeys(alternativeMobile, "9112345668", "Alternative Mobile entered");
+        TestUtil.sendKeys(alternativeMobile, "9113059055", "Alternative Mobile entered");
         TestUtil.click(save, "Save clicked");
         TestUtil.waitUntilVisibilityOfElement(alternateNumberEditedSuccessfully);
         Assert.assertTrue(
