@@ -149,8 +149,6 @@ public class AllPartners  {
         Thread.sleep(3000);
         TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
         Thread.sleep(3000);
-        TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
-        Thread.sleep(3000);
     act.moveToElement(alternativeMobile).doubleClick().doubleClick().build().perform();
         Thread.sleep(3000);
         alternativeMobile.sendKeys(Keys.BACK_SPACE);
