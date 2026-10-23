@@ -122,7 +122,7 @@ public class quote_request extends TestBase {
         WebCommands.staticSleep(25000);
         TestUtil.getScreenShot();
         driver.switchTo().frame(0);
-        WebCommands.staticSleep(500);
+        WebCommands.staticSleep(1000);
         js.executeScript("arguments[0].click();", finaliseData);
       //  TestUtil.click(finaliseData,"Clicked on finalise Data button");
         WebCommands.staticSleep(8000);

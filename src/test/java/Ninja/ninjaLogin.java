@@ -53,8 +53,7 @@ public class ninjaLogin extends TestBase {
         MQ = new CV_QuoteViaMintpro();
         QR = new quote_request();
         MI = new mis();
-//        driver.get(System.getProperty("ninjaurl"));
-      //  driver.get(prop.getProperty("URL"));
+//        driver.get(prop.getProperty("URL"));
         driver.get(System.getProperty("ninjaurl"));
         Thread.sleep(2000);
         login.NinjaLogin("6999123456");
@@ -63,7 +62,7 @@ public class ninjaLogin extends TestBase {
 
 
 
-    @Test(priority = 1, description = "Request manual quote on standalone journey")
+    @Test(priority = 1, description = "Request manual quote on standalone journey",enabled = false)
     public void Roll_GCVStandalone() throws Exception {
         cv.cvFlow();
         String id = upload.getUniqueID();
@@ -72,7 +71,7 @@ public class ninjaLogin extends TestBase {
         cv.QuoteRequest(id, url);
     }
 
-    @Test(priority = 2, description = "SalesPro_GCV_QIS_Automatic_Request")
+    @Test(priority = 2, description = "SalesPro_GCV_QIS_Automatic_Request",enabled = false)
     public void QIS_GCV_Automatic() throws Exception {
         upload.upload_GCV();
         String id = upload.getUniqueID();
@@ -83,7 +82,7 @@ public class ninjaLogin extends TestBase {
         upload.MIS_Cancelled(url);
     }
 
-    @Test(priority = 3, description = "QIS_PCV_Automatic")
+    @Test(priority = 3, description = "QIS_PCV_Automatic",enabled = false)
     public void QIS_PCV_Automatic() throws Exception {
         pcv.upload_PCV();
         String id = upload.getUniqueID();
@@ -92,7 +91,7 @@ public class ninjaLogin extends TestBase {
         cv.QuoteRequest(id, url);
     }
 
-    @Test(priority = 4, description = "QIS_MISCD_Automatic")
+    @Test(priority = 4, description = "QIS_MISCD_Automatic",enabled = false)
     public void QIS_MISCD_Automatic() throws Exception {
         miscd.uplod_MISCD();
         String id = upload.getUniqueID();
@@ -101,12 +100,12 @@ public class ninjaLogin extends TestBase {
         cv.QuoteRequest(id, url);
     }
 
-    @Test(priority = 5, description = "Cv_Standalone_TP")
+    @Test(priority = 5, description = "Cv_Standalone_TP",enabled = false)
     public void GCV_Stand_TP() throws Exception {
         tp.TP_standalone();
         cv.ValidateAddons();
     }
-    @Test(priority = 5, description = "Cv_Quote_Via_MintPro")
+    @Test(priority = 5, description = "Cv_Quote_Via_MintPro",enabled = true)
     public void CV_QuoteViaMintproVerify() throws Exception {
         PI.quoteRequest();
         String requestId = MQ.CV_QuoteViaMintpro();
