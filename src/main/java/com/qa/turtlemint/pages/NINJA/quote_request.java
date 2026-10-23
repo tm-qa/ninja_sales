@@ -217,7 +217,8 @@ public class quote_request extends TestBase {
         TestUtil.sendKeys(PolicyNumber, TestUtil.generateRandomPolicyNo(12), "Policy number entered");
         TestUtil.click(paymentVerifiedCheckbox,"Clicked on payment verified checkbox");
         WebCommands.staticSleep(1000);
-        TestUtil.ElementPresent(uploadFile, "/Users/abhinavkamble/Documents/sampleJPG.jpg", "File uploaded");
+        TestUtil.ElementPresent(uploadFile, "/home/ubuntu/storage/sampleJPG.jpg", "File uploaded");
+//        TestUtil.ElementPresent(uploadFile, "/Users/abhinavkamble/Documents/sampleJPG.jpg", "File uploaded");
         TestUtil.click(policyCopy,"Selected policy copy as document Type");
         TestUtil.click(OKButton,"Clicked on OK Button");
         WebCommands.staticSleep(1000);
