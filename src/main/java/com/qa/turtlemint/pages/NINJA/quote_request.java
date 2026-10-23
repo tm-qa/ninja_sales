@@ -17,7 +17,7 @@ public class quote_request extends TestBase {
     WebElement searchField;
     @FindBy(xpath = "//input[@placeholder='Search by Reg Number, Customer Name, DP Name, DP Phone Number']")
     WebElement searchFieldIssuance;
-    @FindBy(xpath = "//*[contains(text(),'automation')] | //*[contains(text(),'test shubham')]")
+    @FindBy(xpath = "//*[contains(text(),'automation')]/../../../../.. | //*[contains(text(),'test shubham')]/../../../../..")
     WebElement selectLead;
     @FindBy(xpath = "//button[normalize-space()='Own' or normalize-space()='OWN']")
     WebElement ownButton;
