@@ -63,11 +63,11 @@ public class AllPartners  {
     @FindBy(xpath = "//*[normalize-space()='Add Alternate Number']")
     WebElement addAlternateNumber;
 
-    @FindBy(id = "alternativeMobile")
+    @FindBy(xpath = "//input[@id='alternativeMobile']")
     WebElement alternativeMobile;
 
 
-    @FindBy(xpath = "//*[contains(text(),'Alternate Number edited successfully for')]")
+    @FindBy(xpath = "//p[contains(text(),'Alternate Number edited successfully for')]")
     WebElement alternateNumberEditedSuccessfully;
 
     @FindBy(xpath = "//span[text()='Update Disposition']")
@@ -146,13 +146,20 @@ public class AllPartners  {
         Thread.sleep(5000);
         TestUtil.click(ActionButton, "Action Button clicked");
         TestUtil.click(addAlternateNumber, "Add Alternate Number clicked");
+        Thread.sleep(3000);
         TestUtil.click(alternativeMobile, "Alternative Mobile clicked");
-        alternativeMobile.sendKeys(Keys.COMMAND + "a");
-        alternativeMobile.sendKeys(Keys.BACK_SPACE);
-        alternativeMobile.sendKeys("9112345678");
+        Thread.sleep(3000);
+        for (int i = 0; i < 15; i++) {
+            alternativeMobile.sendKeys(Keys.BACK_SPACE);
+        }
+        Thread.sleep(3000);
+        TestUtil.sendKeys(alternativeMobile, "9113059055", "Alternative Mobile entered");
         TestUtil.click(save, "Save clicked");
-        Thread.sleep(4000);
-        Assert.assertTrue(alternateNumberEditedSuccessfully.isDisplayed());
+        TestUtil.waitUntilVisibilityOfElement(alternateNumberEditedSuccessfully);
+        Assert.assertTrue(
+                alternateNumberEditedSuccessfully.isDisplayed(),
+                "Alternate Number edited successfully message is not displayed"
+        );
         TestUtil.getFullPageScreenShot();
         TestUtil.click(closeButton, "Close button clicked");
         TestUtil.click(ActionButton, "Action Button clicked");
