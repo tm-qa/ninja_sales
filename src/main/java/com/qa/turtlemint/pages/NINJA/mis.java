@@ -3,6 +3,7 @@ package com.qa.turtlemint.pages.NINJA;
 import com.qa.turtlemint.base.TestBase;
 import com.qa.turtlemint.commands.WebCommands;
 import com.qa.turtlemint.util.TestUtil;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -49,7 +50,8 @@ public class mis extends TestBase {
         TestUtil.sendKeys(searchField, String.valueOf(Keys.ENTER), "Clicked on enter button");
         WebCommands.staticSleep(5000);
         TestUtil.getScreenShot();
-        TestUtil.click(selectLead, "Clicked on lead");
+        TestUtil.click(driver.findElement(By.xpath("//*[text()='"+MISid+"']/../../..")),"Clicked on lead");
+//        TestUtil.click(selectLead, "Clicked on lead");
         WebCommands.staticSleep(5000);
         TestUtil.getScreenShot();
         TestUtil.click(editAction,"Clicked on edit option");
