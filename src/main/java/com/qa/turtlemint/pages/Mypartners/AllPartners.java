@@ -125,10 +125,9 @@ public class AllPartners  {
                         By.xpath("//td[@title='" + nextDay + "']")
                 )
         );
-
         TestUtil.click(nextDayDate, "Next day date selected");
-        Actions act = new Actions(driver);
         Thread.sleep(3000);
+        TestUtil.click(okbutton, "OK button clicked");
         try {
             TestUtil.click(addReminderNote,"side clickjed");
 
@@ -136,17 +135,6 @@ public class AllPartners  {
 
         }
         Thread.sleep(3000);
-        WebElement ok = wait.until(d -> {
-            for (WebElement element : d.findElements(By.xpath("//span[normalize-space(.)='OK']"))) {
-                if (element.isDisplayed() && element.isEnabled()) {
-                    return element;
-                }
-            }
-            return null;
-        });
-
-        TestUtil.click(ok, "OK button clicked");
-        TestUtil.waitUntilVisibilityOfElement(save);
         TestUtil.click(save, "Save clicked");
         Thread.sleep(4000);
         try{

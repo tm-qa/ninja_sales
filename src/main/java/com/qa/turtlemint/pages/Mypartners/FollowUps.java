@@ -260,6 +260,7 @@ public class FollowUps {
         );
         TestUtil.click(nextDayDate, "Next day date selected");
         Thread.sleep(3000);
+        TestUtil.click(okbutton, "OK button clicked");
         try {
             TestUtil.click(addReminderNote,"side clickjed");
 
@@ -267,10 +268,6 @@ public class FollowUps {
 
         }
         Thread.sleep(3000);
-        wait.until(ExpectedConditions.visibilityOf(okbutton));
-        TestUtil.click(okbutton, "OK button clicked");
-        wait.until(ExpectedConditions.invisibilityOf(okbutton));
-        wait.until(ExpectedConditions.elementToBeClickable(save));
         TestUtil.click(save, "Save clicked");
         Thread.sleep(4000);
         try{
