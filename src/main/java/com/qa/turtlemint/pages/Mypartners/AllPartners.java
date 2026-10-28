@@ -136,7 +136,10 @@ public class AllPartners  {
 
         }
         Thread.sleep(3000);
-        TestUtil.click(okbutton, "ok button clicked");
+        wait.until(ExpectedConditions.elementToBeClickable(okbutton));
+        TestUtil.click(okbutton, "OK button clicked");
+        wait.until(ExpectedConditions.invisibilityOf(okbutton));
+        wait.until(ExpectedConditions.elementToBeClickable(save));
         TestUtil.click(save, "Save clicked");
         Thread.sleep(4000);
         try{
