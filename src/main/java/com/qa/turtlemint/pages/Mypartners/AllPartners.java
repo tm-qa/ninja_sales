@@ -136,18 +136,17 @@ public class AllPartners  {
 
         }
         Thread.sleep(3000);
-        WebElement ok = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//span[normalize-space(.)='OK']")
-                )
-        );
+        WebElement ok = wait.until(d -> {
+            for (WebElement element : d.findElements(By.xpath("//span[normalize-space(.)='OK']"))) {
+                if (element.isDisplayed() && element.isEnabled()) {
+                    return element;
+                }
+            }
+            return null;
+        });
+
         TestUtil.click(ok, "OK button clicked");
-
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(
-                By.xpath("//span[normalize-space(.)='OK']")
-        ));
-
-        wait.until(ExpectedConditions.elementToBeClickable(save));
+        TestUtil.waitUntilVisibilityOfElement(save);
         TestUtil.click(save, "Save clicked");
         Thread.sleep(4000);
         try{
