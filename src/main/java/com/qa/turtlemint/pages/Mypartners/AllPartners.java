@@ -95,7 +95,7 @@ public class AllPartners  {
     @FindBy(xpath = "//*[contains(text(),'All Partners')]")
     WebElement allPartners;
 
-    @FindBy(xpath = "//span[text()='OK']")
+    @FindBy(xpath = "//span[normalize-space()='OK']")
     WebElement okbutton;
 
 
@@ -136,9 +136,17 @@ public class AllPartners  {
 
         }
         Thread.sleep(3000);
-        wait.until(ExpectedConditions.visibilityOf(okbutton));
-        TestUtil.click(okbutton, "OK button clicked");
-        wait.until(ExpectedConditions.invisibilityOf(okbutton));
+        WebElement ok = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.xpath("//span[normalize-space(.)='OK']")
+                )
+        );
+        TestUtil.click(ok, "OK button clicked");
+
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(
+                By.xpath("//span[normalize-space(.)='OK']")
+        ));
+
         wait.until(ExpectedConditions.elementToBeClickable(save));
         TestUtil.click(save, "Save clicked");
         Thread.sleep(4000);
