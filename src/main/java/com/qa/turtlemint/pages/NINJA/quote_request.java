@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -16,12 +17,14 @@ public class quote_request extends TestBase {
     WebElement searchField;
     @FindBy(xpath = "//input[@placeholder='Search by Reg Number, Customer Name, DP Name, DP Phone Number']")
     WebElement searchFieldIssuance;
-    @FindBy(xpath = "//*[contains(text(),'automation')] | //*[contains(text(),'test shubham')]")
+    @FindBy(xpath = "//*[contains(text(),'automation')]/../../../../.. | //*[contains(text(),'test shubham')]/../../../../..")
     WebElement selectLead;
     @FindBy(xpath = "//button[normalize-space()='Own' or normalize-space()='OWN']")
     WebElement ownButton;
     @FindBy(xpath = "//button[text()='Finalise Data']")
     WebElement finaliseData;
+    @FindBy(id = "qis-results-operator-iframe")
+    WebElement qisFrame;
     @FindBy(xpath = "//div[text()='QUOTES']")
     WebElement quotesPlus;
     @FindBy(xpath = "//span[text()='Add Quote']/..")
@@ -121,9 +124,11 @@ public class quote_request extends TestBase {
         TestUtil.click(ownButton, "Clicked on own button");
         WebCommands.staticSleep(25000);
         TestUtil.getScreenShot();
-        driver.switchTo().frame(0);
-        WebCommands.staticSleep(500);
-        js.executeScript("arguments[0].click();", finaliseData);
+        driver.switchTo().frame(qisFrame);
+        WebCommands.staticSleep(3000);
+        Actions act = new Actions(driver);
+        act.moveToElement(finaliseData).click().build().perform();
+//        js.executeScript("arguments[0].click();", finaliseData);
       //  TestUtil.click(finaliseData,"Clicked on finalise Data button");
         WebCommands.staticSleep(8000);
         driver.switchTo().frame(0);
@@ -212,7 +217,8 @@ public class quote_request extends TestBase {
         TestUtil.sendKeys(PolicyNumber, TestUtil.generateRandomPolicyNo(12), "Policy number entered");
         TestUtil.click(paymentVerifiedCheckbox,"Clicked on payment verified checkbox");
         WebCommands.staticSleep(1000);
-        TestUtil.ElementPresent(uploadFile, "/Users/abhinavkamble/Documents/sampleJPG.jpg", "File uploaded");
+        TestUtil.ElementPresent(uploadFile, "/home/ubuntu/storage/sampleJPG.jpg", "File uploaded");
+//        TestUtil.ElementPresent(uploadFile, "/Users/abhinavkamble/Documents/sampleJPG.jpg", "File uploaded");
         TestUtil.click(policyCopy,"Selected policy copy as document Type");
         TestUtil.click(OKButton,"Clicked on OK Button");
         WebCommands.staticSleep(1000);
