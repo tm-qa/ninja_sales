@@ -62,7 +62,7 @@ public class ninjaLogin extends TestBase {
 
 
 
-    @Test(priority = 1, description = "Request manual quote on standalone journey",enabled = false)
+    @Test(priority = 1, description = "Request manual quote on standalone journey",enabled = true)
     public void Roll_GCVStandalone() throws Exception {
         cv.cvFlow();
         String id = upload.getUniqueID();
@@ -71,7 +71,7 @@ public class ninjaLogin extends TestBase {
         cv.QuoteRequest(id, url);
     }
 
-    @Test(priority = 2, description = "SalesPro_GCV_QIS_Automatic_Request",enabled = false)
+    @Test(priority = 2, description = "SalesPro_GCV_QIS_Automatic_Request",enabled = true)
     public void QIS_GCV_Automatic() throws Exception {
         upload.upload_GCV();
         String id = upload.getUniqueID();
@@ -82,7 +82,7 @@ public class ninjaLogin extends TestBase {
         upload.MIS_Cancelled(url);
     }
 
-    @Test(priority = 3, description = "QIS_PCV_Automatic",enabled = false)
+    @Test(priority = 3, description = "QIS_PCV_Automatic",enabled = true)
     public void QIS_PCV_Automatic() throws Exception {
         pcv.upload_PCV();
         String id = upload.getUniqueID();
@@ -91,7 +91,7 @@ public class ninjaLogin extends TestBase {
         cv.QuoteRequest(id, url);
     }
 
-    @Test(priority = 4, description = "QIS_MISCD_Automatic",enabled = false)
+    @Test(priority = 4, description = "QIS_MISCD_Automatic",enabled = true)
     public void QIS_MISCD_Automatic() throws Exception {
         miscd.uplod_MISCD();
         String id = upload.getUniqueID();
@@ -100,7 +100,7 @@ public class ninjaLogin extends TestBase {
         cv.QuoteRequest(id, url);
     }
 
-    @Test(priority = 5, description = "Cv_Standalone_TP",enabled = false)
+    @Test(priority = 5, description = "Cv_Standalone_TP",enabled = true)
     public void GCV_Stand_TP() throws Exception {
         tp.TP_standalone();
         cv.ValidateAddons();
