@@ -95,6 +95,10 @@ public class AllPartners  {
     @FindBy(xpath = "//*[contains(text(),'All Partners')]")
     WebElement allPartners;
 
+    @FindBy(xpath = "//span[normalize-space()='OK']")
+    WebElement okbutton;
+
+
 
     public void allpartners () throws InterruptedException, IOException {
         TestUtil.click(MyPartners, "My Partners clicked");
@@ -121,10 +125,9 @@ public class AllPartners  {
                         By.xpath("//td[@title='" + nextDay + "']")
                 )
         );
-
         TestUtil.click(nextDayDate, "Next day date selected");
-        Actions act = new Actions(driver);
         Thread.sleep(3000);
+        TestUtil.click(okbutton, "OK button clicked");
         try {
             TestUtil.click(addReminderNote,"side clickjed");
 

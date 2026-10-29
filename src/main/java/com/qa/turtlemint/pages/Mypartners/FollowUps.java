@@ -163,6 +163,9 @@ public class FollowUps {
     @FindBy(xpath = "//textarea[@id='addNote_note']")
     WebElement addNoteNote;
 
+    @FindBy(xpath = "//span[text()='OK']")
+    WebElement okbutton;
+
     Actions act = new Actions(driver);
     public void folloups() throws InterruptedException, IOException {
 
@@ -257,6 +260,7 @@ public class FollowUps {
         );
         TestUtil.click(nextDayDate, "Next day date selected");
         Thread.sleep(3000);
+        TestUtil.click(okbutton, "OK button clicked");
         try {
             TestUtil.click(addReminderNote,"side clickjed");
 

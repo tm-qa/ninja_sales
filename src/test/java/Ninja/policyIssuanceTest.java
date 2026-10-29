@@ -36,16 +36,16 @@ public class policyIssuanceTest extends TestBase {
         IQ = new issue_with_my_quote();
         BI = new branch_issuance();
         MI = new mis();
+        driver.get(System.getProperty("ninjaurl"));
+        login.NinjaLogin("6999123456");
+        url = driver.getCurrentUrl();
 //        calculator.login(prop.getProperty("EMAIL"), prop.getProperty("PASSWORD"));
     }
 
     @BeforeMethod
     public void less() throws Exception {
-        driver.get(System.getProperty("ninjaurl"));
-//        driver.get(prop.getProperty("URL"));
-        Thread.sleep(2000);
-        login.NinjaLogin("6999123456");
-        url = driver.getCurrentUrl();
+        driver.get(url);
+
     }
 
 
