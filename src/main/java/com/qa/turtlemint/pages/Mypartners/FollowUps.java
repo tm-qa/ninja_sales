@@ -256,7 +256,7 @@ public class FollowUps {
         Assert.assertTrue(dispositionSetForsnehashinde.isDisplayed());
         TestUtil.click(closeButton, "Close button clicked");
         js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'center'});", Activitylog);
-        TestUtil.JsClick(Activitylog, "Activity log clicked");
+        TestUtil.JsClick(Activitylog, "Disposition visible in activity logs");
         TestUtil.getFullPageScreenShot();
         TestUtil.click(ellipsis, "Ellipsis clicked");
         TestUtil.click(removePartner, "Remove Partner clicked");
