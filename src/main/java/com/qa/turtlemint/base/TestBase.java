@@ -182,15 +182,15 @@ public class TestBase {
             driver.manage().timeouts().implicitlyWait(TestUtil.implicit_wait, TimeUnit.SECONDS);
 //
 //            driver.get(System.getProperty("url"));
-//            ////            String url = prop.getProperty("URL");
-//            String url = System.getProperty("ninjaurl");
-//            if (url.contains(".sanity.")) {
-//                env = "sanity";
-//                System.out.println("Running Environment: " + env);
-//            } else if (url.contains("turtlemintinsurance.com")) {
-//                env = "prod";
-//                System.out.println("Running Environment: " + env);
-//            }
+            ////            String url = prop.getProperty("URL");
+            String url = System.getProperty("ninjaurl");
+            if (url.contains(".sanity.")) {
+                env = "sanity";
+                System.out.println("Running Environment: " + env);
+            } else if (url.contains("turtlemintinsurance.com")) {
+                env = "prod";
+                System.out.println("Running Environment: " + env);
+            }
             driver.get(System.getProperty("ninjaurl"));
 //             driver.get(prop.getProperty("URL"));
         }
