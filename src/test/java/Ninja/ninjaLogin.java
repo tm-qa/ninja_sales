@@ -15,7 +15,7 @@ import util.iTestListener;
 
 import java.lang.reflect.Method;
 @Listeners(iTestListener.class)
-@Test(groups = {"ninjaLogin","Sales"})
+@Test(groups = {"ninjaLogin"})
 public class ninjaLogin extends TestBase {
     public ninjaLogin() {
         super();
