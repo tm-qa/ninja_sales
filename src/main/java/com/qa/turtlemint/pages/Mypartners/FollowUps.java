@@ -166,6 +166,17 @@ public class FollowUps {
     @FindBy(xpath = "//span[text()='OK']")
     WebElement okbutton;
 
+    @FindBy(xpath = "//div[text()='Activity Log']")
+    WebElement Activitylog;
+
+    @FindBy(xpath = "//span[normalize-space()='Partner Follow-up']")
+    WebElement partnerFollowUp;
+
+    @FindBy(xpath = "//em[contains(normalize-space(.),'Prod TestingTest')]")
+    WebElement prodTestingTest;
+
+
+
     Actions act = new Actions(driver);
     public void folloups() throws InterruptedException, IOException {
 
@@ -192,12 +203,18 @@ public class FollowUps {
         driver.navigate().refresh();
         Thread.sleep(5000);
         TestUtil.click(markAsComplete, "Mark As Complete clicked");
+        Thread.sleep(5000);
         TestUtil.click(crmInsights, "CRM Insights clicked");
         driver.switchTo().frame(Frame);
         Assert.assertTrue(snehashinde.isDisplayed());
         driver.switchTo().defaultContent();
         Assert.assertTrue(snehashindeprofile.isDisplayed());
         Assert.assertTrue(number402392.isDisplayed());
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'center'});", Activitylog);
+        TestUtil.JsClick(Activitylog, "Activity log clicked");
+        Assert.assertTrue(partnerFollowUp.isDisplayed() && prodTestingTest.isDisplayed(),
+                "Partner Follow-up or Prod TestingTest text not displayed");
         TestUtil.click(apGrid, "AP Grid clicked");
         TestUtil.getFullPageScreenShot();
         TestUtil.click(closeButton, "Close button clicked");
@@ -238,8 +255,10 @@ public class FollowUps {
         TestUtil.click(save, "Save clicked");
         Assert.assertTrue(dispositionSetForsnehashinde.isDisplayed());
         TestUtil.click(closeButton, "Close button clicked");
-        TestUtil.click(ellipsis, "Ellipsis clicked");
+        js.executeScript("arguments[0].scrollIntoView({block:'center', inline:'center'});", Activitylog);
+        TestUtil.JsClick(Activitylog, "Activity log clicked");
         TestUtil.getFullPageScreenShot();
+        TestUtil.click(ellipsis, "Ellipsis clicked");
         TestUtil.click(removePartner, "Remove Partner clicked");
         Thread.sleep(3000);
         Assert.assertTrue(reasonToRemovePartner.isDisplayed());
@@ -297,5 +316,5 @@ public class FollowUps {
         TestUtil.click(arrowLeft, "Arrow Left clicked");
         TestUtil.getFullPageScreenShot();
         TestUtil.click(backToPartnerList, "Back to Partner List clicked");
-    }
+   }
 }
