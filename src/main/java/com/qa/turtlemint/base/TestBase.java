@@ -180,8 +180,8 @@ public class TestBase {
             driver.manage().deleteAllCookies();
             driver.manage().timeouts().pageLoadTimeout(TestUtil.Page_load_time, TimeUnit.SECONDS);
             driver.manage().timeouts().implicitlyWait(TestUtil.implicit_wait, TimeUnit.SECONDS);
-
-            driver.get(System.getProperty("url"));
+//
+//            driver.get(System.getProperty("url"));
             ////            String url = prop.getProperty("URL");
             String url = System.getProperty("ninjaurl");
             if (url.contains(".sanity.")) {
