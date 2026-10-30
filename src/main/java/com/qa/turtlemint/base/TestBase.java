@@ -138,12 +138,13 @@ public class TestBase {
         if (browserName.equalsIgnoreCase("chrome")) {
 
             ChromeOptions options = new ChromeOptions();
+            options.setBrowserVersion("145");
 
             // Jenkins Chrome Binary
             options.setBinary("/opt/chrome145/chrome");
 
             // Headless Configuration
-            options.addArguments("--headless=new");
+//            options.addArguments("--headless=new");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--disable-gpu");
@@ -180,9 +181,10 @@ public class TestBase {
             driver.manage().deleteAllCookies();
             driver.manage().timeouts().pageLoadTimeout(TestUtil.Page_load_time, TimeUnit.SECONDS);
             driver.manage().timeouts().implicitlyWait(TestUtil.implicit_wait, TimeUnit.SECONDS);
-//
+
 //            driver.get(System.getProperty("url"));
             ////            String url = prop.getProperty("URL");
+//            String url = prop.getProperty("URL");
             String url = System.getProperty("ninjaurl");
             if (url.contains(".sanity.")) {
                 env = "sanity";
@@ -191,8 +193,6 @@ public class TestBase {
                 env = "prod";
                 System.out.println("Running Environment: " + env);
             }
-            driver.get(System.getProperty("ninjaurl"));
-//             driver.get(prop.getProperty("URL"));
         }
     }
 }
