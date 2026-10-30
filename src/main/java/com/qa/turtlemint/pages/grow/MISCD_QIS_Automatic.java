@@ -1,6 +1,7 @@
 package com.qa.turtlemint.pages.grow;
 
 import com.qa.turtlemint.base.TestBase;
+import com.qa.turtlemint.commands.WebCommands;
 import com.qa.turtlemint.util.LogUtils;
 import com.qa.turtlemint.util.TestUtil;
 //import io.netty.handler.codec.http.multipart.FileUpload;
@@ -27,9 +28,9 @@ public class MISCD_QIS_Automatic extends TestBase {
     WebElement GetQuote;
     @FindBy(xpath = "//input[@id='dpLoginId']")
     WebElement Dp;
-    @FindBy(xpath = "//span[text()='(1593963) test shubham']")
+    @FindBy(xpath = "//*[contains(text(),'test shubham')]")
     WebElement DpSan;
-    @FindBy(xpath = "//div[text()='(402392) mr automation']")
+    @FindBy(xpath = "//*[contains(text(),'mr automation')]")
     WebElement Sneha;
 
     @FindBy(xpath = "//span[text()= 'Select Vertical']")
@@ -47,7 +48,7 @@ public class MISCD_QIS_Automatic extends TestBase {
     By uploadFile = By.xpath("//input[@name='file']");
     @FindBy(xpath = "//img[@src='/ninja-v2/static/media/eye-with-circle2.cab61d28a80ca61fa4cfbab66b489752.svg']")
     WebElement eye;
-    @FindBy(xpath = "(//span[@role='img'])[5]")//(//span[@role='img'])[6]
+    @FindBy(xpath = "(//span[@role='img'])[5] | //div[@title='Close']")//(//span[@role='img'])[6]
     WebElement close;
     @FindBy(xpath = "//button[text()='Add Tag']")
     WebElement tag;
@@ -148,9 +149,10 @@ public class MISCD_QIS_Automatic extends TestBase {
         TestUtil.getFullPageScreenShot();
         TestUtil.click(Create, "Create quote clicked");
         Thread.sleep(2000);
-        FileUpload.sendKeys("/home/ubuntu/storage/MAHINDRATRACTOR.PDF");
+//        FileUpload.sendKeys("/home/ubuntu/storage/MAHINDRATRACTOR.PDF");
         /// Added presence of elemnt here to upload a file so created new method in util and for presence of element it require BY element
         /// it doesnt work with web element so upload file is By element
+        TestUtil.ElementPresent(uploadFile, "/Users/abhinavkamble/Documents/samplePDF.pdf", "File uploaded");
 //       TestUtil.ElementPresent(uploadFile, "/Users/surajgarud/Downloads/MAHINDRA TRACTOR.PDF", "File uploaded");
         TestUtil.click(eye, "View policy");
         Thread.sleep(3000);
@@ -170,37 +172,39 @@ public class MISCD_QIS_Automatic extends TestBase {
         TestUtil.getFullPageScreenShot();
         TestUtil.click(Continue, "Continue clicked");
         Thread.sleep(3000);
-        act.moveToElement(businessType).click().perform();
-        TestUtil.click(rollover, "Rollover clicked");
+//        act.moveToElement(businessType).click().perform();
+//        TestUtil.click(rollover, "Rollover clicked");
         lead.isDisplayed();
         TestUtil.sendKeys(lead, "Suraj Automation", "Lead clicked");
         act.moveToElement(policyType).click().perform();
         TestUtil.click(type, "Comp type clicked");
         Thread.sleep(3000);
-        act.moveToElement(expiry).click().perform();
-        TestUtil.click(today, "Today clicked");
+//        act.moveToElement(expiry).click().perform();
+//        TestUtil.click(today, "Today clicked");
         Thread.sleep(2000);
-        TestUtil.click(ClaimFiled, "Yes claim filed clicked");
-        Thread.sleep(2000);
-        act.moveToElement(prevInsurer).click().perform();
-        TestUtil.click(bajaj, "Prevoius insurer as Bajaj Allianz clicked");
+//        TestUtil.click(ClaimFiled, "Yes claim filed clicked");
+//        Thread.sleep(2000);
+//        act.moveToElement(prevInsurer).click().perform();
+//        TestUtil.click(bajaj, "Prevoius insurer as Bajaj Allianz clicked");
         TestUtil.sendKeys(IDV, "500000", "IDV entered");
         TestUtil.click(Trailer, "Trailer clicked No");
-//        act.moveToElement(PreferredInsurer).click().perform();
-//        Thread.sleep(3000);
-//        TestUtil.getScreenShot();
+        act.moveToElement(PreferredInsurer).click().perform();
+        Thread.sleep(3000);
+        TestUtil.getScreenShot();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMinutes(1));
 //        WebElement dropdown = wait.until(
 //                ExpectedConditions.presenceOfElementLocated(
-//                        By.xpath("(//div[contains(@class,'ant-select-dropdown')])[last()]")
+//                        By.xpath("(//div[contains(@class,'ant-select-selector')])[last()]")
 //                )
 //        );
+//        WebCommands.staticSleep(1000);
 //        WebElement option = dropdown.findElement(
 //                By.xpath(".//div[@title='Future Generali']")
 //        );
-//
-//        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", option);
-//        act.sendKeys(Keys.ESCAPE).perform();
+
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(
+                By.xpath(".//div[@title='Future Generali']")));
+        act.sendKeys(Keys.ESCAPE).perform();
         Thread.sleep(2000);
 //        TestUtil.click(AddonsSwitch, "Add ons switch clicked");
         wait.until(ExpectedConditions.visibilityOf(Addons));
@@ -211,19 +215,19 @@ public class MISCD_QIS_Automatic extends TestBase {
         act.moveToElement(ZeroDep).click().perform();
         TestUtil.click(Save, "Save clicked");
         Thread.sleep(3000);
-        WebDriverWait waitr = new WebDriverWait(driver, Duration.ofSeconds(30));
-
-        WebElement dropdownn = waitr.until(
-                ExpectedConditions.presenceOfElementLocated(
-                        By.xpath("(//div[contains(@class,'ant-select-dropdown')])[last()]")
-                )
-        );
-
-        WebElement optionn = dropdownn.findElement(
-                By.xpath(".//div[@title='Future Generali']")
-        );
-
-        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", optionn);
+//        WebDriverWait waitr = new WebDriverWait(driver, Duration.ofSeconds(30));
+//
+//        WebElement dropdownn = waitr.until(
+//                ExpectedConditions.presenceOfElementLocated(
+//                        By.xpath("(//div[contains(@class,'ant-select-selector')])[last()]")
+//                )
+//        );
+//
+//        WebElement optionn = dropdownn.findElement(
+//                By.xpath(".//div[@title='Future Generali']")
+//        );
+//
+//        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", optionn);
         TestUtil.sendKeys(Comments,"Automation Testing","Comment added");
         Thread.sleep(3000);
         TestUtil.getFullPageScreenShot();

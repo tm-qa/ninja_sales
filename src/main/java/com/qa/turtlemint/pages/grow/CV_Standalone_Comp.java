@@ -40,9 +40,9 @@ public class CV_Standalone_Comp extends TestBase {
     WebElement GetQuote;
     @FindBy(xpath = "//input[@id='dpLoginId']")
     WebElement Dp;
-    @FindBy(xpath = "//span[text()='(1593963) test shubham']")
+    @FindBy(xpath = "//*[contains(text(),'test shubham')]")
     WebElement DpSan;
-    @FindBy(xpath = "//div[text()='(402392) mr automation']")
+    @FindBy(xpath = "//*[contains(text(),'mr automation')]")
     WebElement Sneha;
 
     @FindBy(xpath = "//span[text()= 'Select Vertical']")
