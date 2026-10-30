@@ -37,7 +37,7 @@ public class ninjaLogin extends TestBase {
 
     String url;
 
-    @BeforeMethod
+    @BeforeClass
     public void start(Method method) throws Exception {
         TestBase.MethodName = method.getName();
         initialization();
@@ -53,14 +53,16 @@ public class ninjaLogin extends TestBase {
         MQ = new CV_QuoteViaMintpro();
         QR = new quote_request();
         MI = new mis();
-//        driver.get(prop.getProperty("URL"));
-        driver.get(System.getProperty("ninjaurl"));
+        driver.get(prop.getProperty("URL"));
+//        driver.get(System.getProperty("ninjaurl"));
         Thread.sleep(2000);
         login.NinjaLogin("6999123456");
         url = driver.getCurrentUrl();
     }
-
-
+    @BeforeMethod
+    public void less() throws Exception {
+        driver.get(url);
+    }
 
     @Test(priority = 1, description = "Request manual quote on standalone journey",enabled = true)
     public void Roll_GCVStandalone() throws Exception {
@@ -125,7 +127,7 @@ public class ninjaLogin extends TestBase {
         System.out.println(MISid);
         MI.SearchRequestAndCancel(MISid);
     }
-    @AfterMethod
+    @AfterClass
     public void close() {
         driver.quit();
     }
