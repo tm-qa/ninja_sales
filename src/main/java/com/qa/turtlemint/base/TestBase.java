@@ -138,7 +138,7 @@ public class TestBase {
         if (browserName.equalsIgnoreCase("chrome")) {
 
             ChromeOptions options = new ChromeOptions();
-            options.setBrowserVersion("145");
+//            options.setBrowserVersion("145");
 
             // Jenkins Chrome Binary
             options.setBinary("/opt/chrome145/chrome");
